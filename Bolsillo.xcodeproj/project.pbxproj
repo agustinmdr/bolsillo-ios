@@ -1,0 +1,568 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+ E40000000000000000000002 = {isa = PBXBuildFile; fileRef = E30000000000000000000002; };
+ E40000000000000000000001 = {isa = PBXBuildFile; fileRef = E30000000000000000000001; };
+ E40000000000000000000000 = {isa = PBXBuildFile; fileRef = E30000000000000000000000; };
+ D40000000000000000000001 = {isa = PBXBuildFile; fileRef = D30000000000000000000001; };
+ C40000000000000000000004 = {isa = PBXBuildFile; fileRef = C30000000000000000000004; };
+ C40000000000000000000003 = {isa = PBXBuildFile; fileRef = C30000000000000000000003; };
+ C40000000000000000000002 = {isa = PBXBuildFile; fileRef = C30000000000000000000002; };
+ C40000000000000000000001 = {isa = PBXBuildFile; fileRef = C30000000000000000000001; };
+ C50000000000000000000000 = {isa = PBXBuildFile; fileRef = C30000000000000000000000; };
+ C40000000000000000000000 = {isa = PBXBuildFile; fileRef = C30000000000000000000000; };
+ B20000000000000000000001 = {isa = PBXBuildFile; fileRef = B20000000000000000000003; };
+ B20000000000000000000002 = {isa = PBXBuildFile; fileRef = B20000000000000000000004; };
+        A10000000000000000000001 = {isa = PBXBuildFile; fileRef = A10000000000000000000003; };
+        A10000000000000000000002 = {isa = PBXBuildFile; fileRef = A10000000000000000000003; };
+		000000000000000000000011 /* Core/Models/Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000001 /* Core/Models/Finance.swift */; };
+		000000000000000000000012 /* Widget/BolsilloWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000007 /* Widget/BolsilloWidget.swift */; };
+		000000000000000000000019 /* BolsilloWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 00000000000000000000000B /* BolsilloWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		00000000000000000000001E /* Core/Models/Finance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000001 /* Core/Models/Finance.swift */; };
+		00000000000000000000001F /* App/Application/BolsilloApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000002 /* App/Application/BolsilloApp.swift */; };
+		000000000000000000000020 /* App/State/Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000003 /* App/State/Store.swift */; };
+		000000000000000000000021 /* App/Application/RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000004 /* App/Application/RootView.swift */; };
+		000000000000000000000022 /* App/Features/Overview/MonthlySpendingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000005 /* App/Features/Overview/MonthlySpendingCard.swift */; };
+		000000000000000000000023 /* App/Features/Settings/SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000006 /* App/Features/Settings/SettingsView.swift */; };
+		000000000000000000000026 /* Importacion/historico-revisar.csv in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000008 /* Importacion/historico-revisar.csv */; };
+		000000000000000000000027 /* App/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000009 /* App/Assets.xcassets */; };
+		C5B00F38222914EA3EC8CDF2 = {isa = PBXBuildFile; fileRef = 49DD7532A90060E8027CE7D2; };
+		34A38BE025662A88FAF5FCC7 = {isa = PBXBuildFile; fileRef = ED9056625C8C0EA80665C584; };
+		1C5C2F6F8862D2EDE5C75F31 = {isa = PBXBuildFile; fileRef = EE6801FCC6C46EAE04E42E55; };
+		378F18D959E87BA78EFECA9E = {isa = PBXBuildFile; fileRef = 7978D360E6157CF6FB258422; };
+		4AED1F383DD1FF77400435EF = {isa = PBXBuildFile; fileRef = 95AF997F0BB7BB8EC8420734; };
+		56C1D526D28A6E2DF83C731E = {isa = PBXBuildFile; fileRef = 12CD39C48BAC9C6733EF9F14; };
+		5BE396248FB47D14F2ABDE97 = {isa = PBXBuildFile; fileRef = ECCDA01FF92B8E137A665D22; };
+		F265477F83D5FC9BFD355274 = {isa = PBXBuildFile; fileRef = 19A250C31904B42FE002B7D5; };
+		180CE968106425D3169750CE = {isa = PBXBuildFile; fileRef = 1235E0453996AC63E046AEAC; };
+		0DCBD346D6366138D91CAC72 = {isa = PBXBuildFile; fileRef = F90E9D3C0B6985623A957F1D; };
+		F5A67F7ABF3A3FF6C0520E93 = {isa = PBXBuildFile; fileRef = 7C4FDA3C8437ADE23A8975E3; };
+		312A2F2220BC56644535524A = {isa = PBXBuildFile; fileRef = 1024A407B1E381CA8F52089B; };
+		E1D9F7C0931099D68F8975E6 = {isa = PBXBuildFile; fileRef = EE484E008C2A4099811118A1; };
+		3DDBDC93E8AA1D8C36E45F03 = {isa = PBXBuildFile; fileRef = 01F16BE813B0D9A9E8C14C3D; };
+		F340007E3114CAAE74CEC44F = {isa = PBXBuildFile; fileRef = E7CCBEAEA445D96EB7A0A7AC; };
+		9685251E1D0B9E0AFBCE5E92 = {isa = PBXBuildFile; fileRef = ADD424158E945D164D6C9AC4; };
+		5EE91BC9BD6CB6F6EC4978EB = {isa = PBXBuildFile; fileRef = 7E9B979B90952D7DC6A53A7E; };
+		7CF98BD3C3302DAEC16882F7 = {isa = PBXBuildFile; fileRef = 6A53ED54F7734A753835CA0D; };
+		470DE00CE7FA7584B2FE1B0D = {isa = PBXBuildFile; fileRef = 52D80936BCE812CD2E6829D2; };
+		67B8D478FC5572D58B1A1563 = {isa = PBXBuildFile; fileRef = 7492DE523B8524DCCCAC7957; };
+		42EC9D56985C5FE5E62D5BD9 = {isa = PBXBuildFile; fileRef = FE5BF07E8ABC94A4731AD8D5; };
+		7607A90582B6445B5E9A7B5D = {isa = PBXBuildFile; fileRef = FDBEFDFF5711F011C0420504; };
+		E0CC122042F008073E587A0B = {isa = PBXBuildFile; fileRef = B2F1DBD25678D165A8EED4B7; };
+		4CAC467BD26960238491F2F0 = {isa = PBXBuildFile; fileRef = A915E8B1E482E35AB63D1147; };
+		6347D59C5B0F29CED661E6E2 = {isa = PBXBuildFile; fileRef = C020D721CAE1FD60A8429229; };
+		CF55221C859D1657CB738724 = {isa = PBXBuildFile; fileRef = 51424B66A67CD5DB87276D70; };
+		F41880B2EBCD7DF53B1283CB = {isa = PBXBuildFile; fileRef = 5D706A4BDB676D752CF6519F; };
+		371090BF14C070CB341E72A8 = {isa = PBXBuildFile; fileRef = B45441DFBF0BB9C2E78BC163; };
+250FCC0CB73BDCD8F73A50C5 = {isa = PBXBuildFile; fileRef = C2B1A9A45792ED336546099C; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		000000000000000000000017 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FFFFFFFFFFFFFFFFFFFFFFFF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000000000016;
+			remoteInfo = BolsilloWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00000000000000000000001A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				000000000000000000000019 /* BolsilloWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+ E30000000000000000000002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudSettingsView.swift"; sourceTree = "<group>"; };
+ E30000000000000000000001 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudSyncManager.swift"; sourceTree = "<group>"; };
+ E30000000000000000000000 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudSync.swift"; sourceTree = "<group>"; };
+ D30000000000000000000001 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExcelReport.swift"; sourceTree = "<group>"; };
+ C30000000000000000000004 = {isa = PBXFileReference; lastKnownFileType = text.json; path = "complemento-planilla.json"; sourceTree = "<group>"; };
+ C30000000000000000000003 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoupleClosingView.swift"; sourceTree = "<group>"; };
+ C30000000000000000000002 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardReminders.swift"; sourceTree = "<group>"; };
+ C30000000000000000000001 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LedgerStorage.swift"; sourceTree = "<group>"; };
+ C30000000000000000000000 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Operations.swift"; sourceTree = "<group>"; };
+ B20000000000000000000003 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletCapture.swift"; sourceTree = "<group>"; };
+ B20000000000000000000004 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletIntent.swift"; sourceTree = "<group>"; };
+        A10000000000000000000003 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Theme.swift"; sourceTree = "<group>"; };
+		000000000000000000000001 /* Core/Models/Finance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Finance.swift"; sourceTree = "<group>"; };
+		000000000000000000000002 /* App/Application/BolsilloApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BolsilloApp.swift"; sourceTree = "<group>"; };
+		000000000000000000000003 /* App/State/Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store.swift"; sourceTree = "<group>"; };
+		000000000000000000000004 /* App/Application/RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootView.swift"; sourceTree = "<group>"; };
+		000000000000000000000005 /* App/Features/Overview/MonthlySpendingCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MonthlySpendingCard.swift"; sourceTree = "<group>"; };
+		000000000000000000000006 /* App/Features/Settings/SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsView.swift"; sourceTree = "<group>"; };
+		000000000000000000000007 /* Widget/BolsilloWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BolsilloWidget.swift"; sourceTree = "<group>"; };
+		000000000000000000000008 /* Importacion/historico-revisar.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = "historico-revisar.csv"; sourceTree = "<group>"; };
+		000000000000000000000009 /* App/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Assets.xcassets"; sourceTree = "<group>"; };
+		00000000000000000000000A /* Bolsillo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Bolsillo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00000000000000000000000B /* BolsilloWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; path = BolsilloWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		49DD7532A90060E8027CE7D2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PeriodPicker.swift"; sourceTree = "<group>"; };
+		ED9056625C8C0EA80665C584 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cards.swift"; sourceTree = "<group>"; };
+		EE6801FCC6C46EAE04E42E55 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategorySelectionGrid.swift"; sourceTree = "<group>"; };
+		7978D360E6157CF6FB258422 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard.swift"; sourceTree = "<group>"; };
+		95AF997F0BB7BB8EC8420734 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChargeRow.swift"; sourceTree = "<group>"; };
+		12CD39C48BAC9C6733EF9F14 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstallmentViews.swift"; sourceTree = "<group>"; };
+		ECCDA01FF92B8E137A665D22 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movements.swift"; sourceTree = "<group>"; };
+		19A250C31904B42FE002B7D5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExpenseForm.swift"; sourceTree = "<group>"; };
+		1235E0453996AC63E046AEAC = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExcelReportView.swift"; sourceTree = "<group>"; };
+		F90E9D3C0B6985623A957F1D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletAutomationSettings.swift"; sourceTree = "<group>"; };
+		7C4FDA3C8437ADE23A8975E3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletSettings.swift"; sourceTree = "<group>"; };
+		1024A407B1E381CA8F52089B = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategorySettings.swift"; sourceTree = "<group>"; };
+		EE484E008C2A4099811118A1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoupleView.swift"; sourceTree = "<group>"; };
+		01F16BE813B0D9A9E8C14C3D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlanningView.swift"; sourceTree = "<group>"; };
+		E7CCBEAEA445D96EB7A0A7AC = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OperationsPreviewHost.swift"; sourceTree = "<group>"; };
+		ADD424158E945D164D6C9AC4 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackupSettingsView.swift"; sourceTree = "<group>"; };
+		7E9B979B90952D7DC6A53A7E = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SupplementalMigrationView.swift"; sourceTree = "<group>"; };
+		6A53ED54F7734A753835CA0D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResolveMigrationView.swift"; sourceTree = "<group>"; };
+		52D80936BCE812CD2E6829D2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatementsOverview.swift"; sourceTree = "<group>"; };
+		7492DE523B8524DCCCAC7957 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardScheduleView.swift"; sourceTree = "<group>"; };
+		FE5BF07E8ABC94A4731AD8D5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderSettingsView.swift"; sourceTree = "<group>"; };
+		FDBEFDFF5711F011C0420504 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatementEditorView.swift"; sourceTree = "<group>"; };
+		B2F1DBD25678D165A8EED4B7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdjustmentEditor.swift"; sourceTree = "<group>"; };
+		A915E8B1E482E35AB63D1147 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkReviewView.swift"; sourceTree = "<group>"; };
+		C020D721CAE1FD60A8429229 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BulkApplyView.swift"; sourceTree = "<group>"; };
+		51424B66A67CD5DB87276D70 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MerchantRulesView.swift"; sourceTree = "<group>"; };
+		5D706A4BDB676D752CF6519F = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RuleEditorView.swift"; sourceTree = "<group>"; };
+		B45441DFBF0BB9C2E78BC163 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RulePreviewView.swift"; sourceTree = "<group>"; };
+		624A8F936E0903B5DF7F6FC4 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info.plist"; sourceTree = "<group>"; };
+		B813F16BDC02AC6F98158E40 = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "App.entitlements"; sourceTree = "<group>"; };
+		B861BC2F2696217D6987ED25 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info.plist"; sourceTree = "<group>"; };
+		C81834B933CCD68171DA3297 = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Widget.entitlements"; sourceTree = "<group>"; };
+C2B1A9A45792ED336546099C = {isa = PBXFileReference; lastKnownFileType = text.json; path = "private-setup.json"; sourceTree = "<group>"; };
+EB1F920998E611429B61E3F9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Checks.swift"; sourceTree = "<group>"; };
+F2F0E19DEA0C6D5D386495CD = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README.md"; sourceTree = "<group>"; };
+CBAADB369158466147B178A1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "main.swift"; sourceTree = "<group>"; };
+949170A7281F94E9F930176D = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = "verify.py"; sourceTree = "<group>"; };
+50CC8593D597FE6644106892 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OperationsChecks.swift"; sourceTree = "<group>"; };
+DD81EAB323196834D5267568 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "main.swift"; sourceTree = "<group>"; };
+E2091E2EA993D901A00FB636 = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "ARCHITECTURE.md"; sourceTree = "<group>"; };
+99062A734E05EA45637AB2A9 = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "LOCAL_CONFIGURATION.md"; sourceTree = "<group>"; };
+34E77966D63E49BEC5D1E975 = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "prepare-resources.sh"; sourceTree = "<group>"; };
+22FA64002F75EF68E17E1864 = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "test.sh"; sourceTree = "<group>"; };
+4483A75551A06726F5E72B6E = {isa = PBXFileReference; lastKnownFileType = text.json; path = "complemento-planilla.json"; sourceTree = "<group>"; };
+2C87EB6B84320763686412D2 = {isa = PBXFileReference; lastKnownFileType = text; path = "historico-revisar.csv"; sourceTree = "<group>"; };
+4A9F1288681D5C1C8DB5E556 = {isa = PBXFileReference; lastKnownFileType = text.json; path = "private-setup.json"; sourceTree = "<group>"; };
+AA4ACA445B3FBAF47CDE31AC = {isa = PBXFileReference; lastKnownFileType = text; path = "README.md"; sourceTree = "<group>"; };
+7A4FF7F962C7F66B27D6CDC6 = {isa = PBXFileReference; lastKnownFileType = text; path = ".gitignore"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		000000000000000000000014 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000025 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00000000000000000000000C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000000A /* Bolsillo.app */,
+				00000000000000000000000B /* BolsilloWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A04F46B39DCB5F4C032F10DA = {isa = PBXGroup; children = (000000000000000000000002, 000000000000000000000004,); name = "Application"; path = "Application"; sourceTree = "<group>"; };
+		B57B9A0238C42A07FB07BB5F = {isa = PBXGroup; children = (1024A407B1E381CA8F52089B,); name = "Categories"; path = "Categories"; sourceTree = "<group>"; };
+		0E8C0B1FF19341220599F592 = {isa = PBXGroup; children = (C020D721CAE1FD60A8429229, A915E8B1E482E35AB63D1147, 19A250C31904B42FE002B7D5, ECCDA01FF92B8E137A665D22,); name = "Expenses"; path = "Expenses"; sourceTree = "<group>"; };
+		817CEA5401090BAE1BB5086D = {isa = PBXGroup; children = (6A53ED54F7734A753835CA0D, 7E9B979B90952D7DC6A53A7E,); name = "Import"; path = "Import"; sourceTree = "<group>"; };
+		C9D4A121328B08CD20050C19 = {isa = PBXGroup; children = (7978D360E6157CF6FB258422, 000000000000000000000005,); name = "Overview"; path = "Overview"; sourceTree = "<group>"; };
+		39F945833E69CB5E8CA7C417 = {isa = PBXGroup; children = (01F16BE813B0D9A9E8C14C3D,); name = "Planning"; path = "Planning"; sourceTree = "<group>"; };
+		CC062CD40A0755CA8C657BAA = {isa = PBXGroup; children = (1235E0453996AC63E046AEAC,); name = "Reports"; path = "Reports"; sourceTree = "<group>"; };
+		B1516C17A0947425CAA4CFF3 = {isa = PBXGroup; children = (51424B66A67CD5DB87276D70, 5D706A4BDB676D752CF6519F, B45441DFBF0BB9C2E78BC163,); name = "Rules"; path = "Rules"; sourceTree = "<group>"; };
+		39D0502068253FFA696AA95C = {isa = PBXGroup; children = (ADD424158E945D164D6C9AC4, E30000000000000000000002, FE5BF07E8ABC94A4731AD8D5, 000000000000000000000006, F90E9D3C0B6985623A957F1D,); name = "Settings"; path = "Settings"; sourceTree = "<group>"; };
+		22C4B052FA6C8F2672F38AB8 = {isa = PBXGroup; children = (C30000000000000000000003, EE484E008C2A4099811118A1,); name = "Sharing"; path = "Sharing"; sourceTree = "<group>"; };
+		65CB88A2B4B819A185E612E4 = {isa = PBXGroup; children = (B2F1DBD25678D165A8EED4B7, FDBEFDFF5711F011C0420504, 52D80936BCE812CD2E6829D2,); name = "Statements"; path = "Statements"; sourceTree = "<group>"; };
+		26D0356F848AB02B62AB673A = {isa = PBXGroup; children = (7492DE523B8524DCCCAC7957, 7C4FDA3C8437ADE23A8975E3,); name = "Wallets"; path = "Wallets"; sourceTree = "<group>"; };
+		CA3DE9671F55BD0C9AFED8FA = {isa = PBXGroup; children = (B57B9A0238C42A07FB07BB5F, 0E8C0B1FF19341220599F592, 817CEA5401090BAE1BB5086D, C9D4A121328B08CD20050C19, 39F945833E69CB5E8CA7C417, CC062CD40A0755CA8C657BAA, B1516C17A0947425CAA4CFF3, 39D0502068253FFA696AA95C, 22C4B052FA6C8F2672F38AB8, 65CB88A2B4B819A185E612E4, 26D0356F848AB02B62AB673A,); name = "Features"; path = "Features"; sourceTree = "<group>"; };
+		613722095EB0BAD4849A847D = {isa = PBXGroup; children = (B20000000000000000000004,); name = "Wallet"; path = "Wallet"; sourceTree = "<group>"; };
+		4C42543A5B6FBCD405AD6A7D = {isa = PBXGroup; children = (613722095EB0BAD4849A847D,); name = "Integrations"; path = "Integrations"; sourceTree = "<group>"; };
+		5B2956E3A134DCE6CED3C186 = {isa = PBXGroup; children = (E7CCBEAEA445D96EB7A0A7AC,); name = "Preview"; path = "Preview"; sourceTree = "<group>"; };
+		E5E3546FFD3FB6C9E59B3DBC = {isa = PBXGroup; children = (C30000000000000000000002, E30000000000000000000001,); name = "Services"; path = "Services"; sourceTree = "<group>"; };
+		175E03E5A2FD978AEB459AC7 = {isa = PBXGroup; children = (000000000000000000000003,); name = "State"; path = "State"; sourceTree = "<group>"; };
+		1C48CE29E4E135EE62951B22 = {isa = PBXGroup; children = (B813F16BDC02AC6F98158E40, A04F46B39DCB5F4C032F10DA, 000000000000000000000009, CA3DE9671F55BD0C9AFED8FA, 624A8F936E0903B5DF7F6FC4, 4C42543A5B6FBCD405AD6A7D, 5B2956E3A134DCE6CED3C186, E5E3546FFD3FB6C9E59B3DBC, 175E03E5A2FD978AEB459AC7,); name = "App"; path = "App"; sourceTree = "<group>"; };
+		26C036AA58166B49C6CC0C1C = {isa = PBXGroup; children = (C30000000000000000000000,); name = "Domain"; path = "Domain"; sourceTree = "<group>"; };
+		F2FFE572F4B0FBA8C5C9E6A2 = {isa = PBXGroup; children = (000000000000000000000001,); name = "Models"; path = "Models"; sourceTree = "<group>"; };
+		7B7C30CB56AA61767B6E35CA = {isa = PBXGroup; children = (E30000000000000000000000,); name = "Cloud"; path = "Cloud"; sourceTree = "<group>"; };
+		75C53E16D6D5EF485A13E77D = {isa = PBXGroup; children = (D30000000000000000000001,); name = "Export"; path = "Export"; sourceTree = "<group>"; };
+		1001213A369CB72BF983C6A4 = {isa = PBXGroup; children = (C30000000000000000000001,); name = "Storage"; path = "Storage"; sourceTree = "<group>"; };
+		FC6D6367ACD9A7FCBFBDD321 = {isa = PBXGroup; children = (B20000000000000000000003,); name = "Wallet"; path = "Wallet"; sourceTree = "<group>"; };
+		CB01740B3B3DF35F1195E987 = {isa = PBXGroup; children = (7B7C30CB56AA61767B6E35CA, 75C53E16D6D5EF485A13E77D, 1001213A369CB72BF983C6A4, FC6D6367ACD9A7FCBFBDD321,); name = "Services"; path = "Services"; sourceTree = "<group>"; };
+		410188F9DC6E499FEC68BCF6 = {isa = PBXGroup; children = (26C036AA58166B49C6CC0C1C, F2FFE572F4B0FBA8C5C9E6A2, CB01740B3B3DF35F1195E987,); name = "Core"; path = "Core"; sourceTree = "<group>"; };
+		F3C2BED4BD0E21B6F90C5195 = {isa = PBXGroup; children = (ED9056625C8C0EA80665C584, EE6801FCC6C46EAE04E42E55, 95AF997F0BB7BB8EC8420734, 12CD39C48BAC9C6733EF9F14, 49DD7532A90060E8027CE7D2,); name = "Components"; path = "Components"; sourceTree = "<group>"; };
+		490CD259D3EED38A828CDE6E = {isa = PBXGroup; children = (F3C2BED4BD0E21B6F90C5195, A10000000000000000000003,); name = "DesignSystem"; path = "DesignSystem"; sourceTree = "<group>"; };
+		B2AC4E3EF1A269E0129E087F = {isa = PBXGroup; children = (C2B1A9A45792ED336546099C, C30000000000000000000004, 000000000000000000000008,); name = "Importacion"; path = "Importacion"; sourceTree = "<group>"; };
+		DDF05173B376DE398B5EAD82 = {isa = PBXGroup; children = (000000000000000000000007, B861BC2F2696217D6987ED25, C81834B933CCD68171DA3297,); name = "Widget"; path = "Widget"; sourceTree = "<group>"; };
+		00000000000000000000000D = {isa = PBXGroup; children = (156052F04525D0F710673CF0, 86E76DCFD8B38CD6265704AD, C3BBE33D2D6E650AB8728D33, A024F06580C79B7582C3806A, AA4ACA445B3FBAF47CDE31AC, 7A4FF7F962C7F66B27D6CDC6, 1C48CE29E4E135EE62951B22, 410188F9DC6E499FEC68BCF6, 490CD259D3EED38A828CDE6E, B2AC4E3EF1A269E0129E087F, DDF05173B376DE398B5EAD82, 00000000000000000000000C,); sourceTree = "<group>"; };
+F58302C2F4E306BBCCEC9D25 = {isa = PBXGroup; children = (EB1F920998E611429B61E3F9,); name = "CloudSync"; path = "CloudSync"; sourceTree = "<group>"; };
+5D8AFCA564BE4452126E9783 = {isa = PBXGroup; children = (F2F0E19DEA0C6D5D386495CD, CBAADB369158466147B178A1, 949170A7281F94E9F930176D,); name = "ExcelReport"; path = "ExcelReport"; sourceTree = "<group>"; };
+156052F04525D0F710673CF0 = {isa = PBXGroup; children = (F58302C2F4E306BBCCEC9D25, 5D8AFCA564BE4452126E9783, 50CC8593D597FE6644106892, DD81EAB323196834D5267568,); name = "Tests"; path = "Tests"; sourceTree = "<group>"; };
+86E76DCFD8B38CD6265704AD = {isa = PBXGroup; children = (E2091E2EA993D901A00FB636, 99062A734E05EA45637AB2A9,); name = "Docs"; path = "Docs"; sourceTree = "<group>"; };
+C3BBE33D2D6E650AB8728D33 = {isa = PBXGroup; children = (34E77966D63E49BEC5D1E975, 22FA64002F75EF68E17E1864,); name = "Scripts"; path = "Scripts"; sourceTree = "<group>"; };
+C5EFB5D354042DF8493EBE65 = {isa = PBXGroup; children = (4483A75551A06726F5E72B6E, 2C87EB6B84320763686412D2, 4A9F1288681D5C1C8DB5E556,); name = "Examples"; path = "Examples"; sourceTree = "<group>"; };
+A024F06580C79B7582C3806A = {isa = PBXGroup; children = (C5EFB5D354042DF8493EBE65,); name = "Resources"; path = "Resources"; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000000016 /* BolsilloWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000010 /* Build configuration list for PBXNativeTarget "BolsilloWidget" */;
+			buildPhases = (
+				000000000000000000000013 /* Sources */,
+				000000000000000000000014 /* Frameworks */,
+				000000000000000000000015 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BolsilloWidget;
+			productName = BolsilloWidget;
+			productReference = 00000000000000000000000B /* BolsilloWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		000000000000000000000029 /* Bolsillo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00000000000000000000001D /* Build configuration list for PBXNativeTarget "Bolsillo" */;
+			buildPhases = (
+				000000000000000000000024 /* Sources */,
+				000000000000000000000025 /* Frameworks */,
+				000000000000000000000028 /* Resources */,
+				00000000000000000000001A /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				000000000000000000000018 /* PBXTargetDependency */,
+			);
+			name = Bolsillo;
+			productName = Bolsillo;
+			productReference = 00000000000000000000000A /* Bolsillo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFFFFFFFFFFFFFFFFFFFFFFF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 00000000000000000000002C /* Build configuration list for PBXProject "Bolsillo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = es;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				es,
+				en,
+				Base,
+			);
+			mainGroup = 00000000000000000000000D;
+			productRefGroup = 00000000000000000000000C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000000000029 /* Bolsillo */,
+				000000000000000000000016 /* BolsilloWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		000000000000000000000015 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000028 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+250FCC0CB73BDCD8F73A50C5,
+				000000000000000000000026 /* Importacion/historico-revisar.csv in Resources */,
+ C40000000000000000000004,
+				000000000000000000000027 /* App/Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		000000000000000000000013 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000011 /* Core/Models/Finance.swift in Sources */,
+ C50000000000000000000000,
+                A10000000000000000000001,
+				000000000000000000000012 /* Widget/BolsilloWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		000000000000000000000024 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00000000000000000000001E /* Core/Models/Finance.swift in Sources */,
+ E40000000000000000000002,
+ E40000000000000000000001,
+ E40000000000000000000000,
+ D40000000000000000000001,
+ C40000000000000000000003,
+ C40000000000000000000002,
+ C40000000000000000000001,
+ C40000000000000000000000,
+ B20000000000000000000001,
+ B20000000000000000000002,
+                A10000000000000000000002,
+				00000000000000000000001F /* App/Application/BolsilloApp.swift in Sources */,
+				000000000000000000000020 /* App/State/Store.swift in Sources */,
+				000000000000000000000021 /* App/Application/RootView.swift in Sources */,
+				000000000000000000000022 /* App/Features/Overview/MonthlySpendingCard.swift in Sources */,
+				000000000000000000000023 /* App/Features/Settings/SettingsView.swift in Sources */,
+				C5B00F38222914EA3EC8CDF2,
+				34A38BE025662A88FAF5FCC7,
+				1C5C2F6F8862D2EDE5C75F31,
+				378F18D959E87BA78EFECA9E,
+				4AED1F383DD1FF77400435EF,
+				56C1D526D28A6E2DF83C731E,
+				5BE396248FB47D14F2ABDE97,
+				F265477F83D5FC9BFD355274,
+				180CE968106425D3169750CE,
+				0DCBD346D6366138D91CAC72,
+				F5A67F7ABF3A3FF6C0520E93,
+				312A2F2220BC56644535524A,
+				E1D9F7C0931099D68F8975E6,
+				3DDBDC93E8AA1D8C36E45F03,
+				F340007E3114CAAE74CEC44F,
+				9685251E1D0B9E0AFBCE5E92,
+				5EE91BC9BD6CB6F6EC4978EB,
+				7CF98BD3C3302DAEC16882F7,
+				470DE00CE7FA7584B2FE1B0D,
+				67B8D478FC5572D58B1A1563,
+				42EC9D56985C5FE5E62D5BD9,
+				7607A90582B6445B5E9A7B5D,
+				E0CC122042F008073E587A0B,
+				4CAC467BD26960238491F2F0,
+				6347D59C5B0F29CED661E6E2,
+				CF55221C859D1657CB738724,
+				F41880B2EBCD7DF53B1283CB,
+				371090BF14C070CB341E72A8,
+
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		000000000000000000000018 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000000000016 /* BolsilloWidget */;
+			targetProxy = 000000000000000000000017 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		00000000000000000000000E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UJM5SGZ4WC;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agustin.bolsillo.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00000000000000000000000F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = Widget/Widget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UJM5SGZ4WC;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Widget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agustin.bolsillo.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		00000000000000000000001B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = UJM5SGZ4WC;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agustin.bolsillo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		00000000000000000000001C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UJM5SGZ4WC;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.agustin.bolsillo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		00000000000000000000002A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		00000000000000000000002B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		000000000000000000000010 /* Build configuration list for PBXNativeTarget "BolsilloWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00000000000000000000000E /* Debug */,
+				00000000000000000000000F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		00000000000000000000001D /* Build configuration list for PBXNativeTarget "Bolsillo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00000000000000000000001B /* Debug */,
+				00000000000000000000001C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		00000000000000000000002C /* Build configuration list for PBXProject "Bolsillo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00000000000000000000002A /* Debug */,
+				00000000000000000000002B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FFFFFFFFFFFFFFFFFFFFFFFF /* Project object */;
+}
