@@ -22,5 +22,6 @@ struct StatementsOverview: View {
                 }
             }
         }.navigationTitle("Tarjetas y resúmenes").navigationBarTitleDisplayMode(.inline)
+            .toolbar { NavigationLink("Administrar") { WalletSettings() } }
     }
 }

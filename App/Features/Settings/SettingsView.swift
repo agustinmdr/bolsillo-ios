@@ -27,6 +27,7 @@ struct SettingsView: View {
                 Text("Apagado: tema claro. Encendido: tema oscuro. Se guarda tu elección, independientemente del dispositivo.")
             }
             Section("Organización") {
+                NavigationLink { ReminderSettingsView() } label: { Label("Recordatorios", systemImage: "bell.badge") }
                 NavigationLink("Tarjetas y cuentas") { WalletSettings() }
                 NavigationLink("Secciones y categorías") { CategorySettings() }
                 NavigationLink("Revisión masiva y reglas") { BulkReviewView() }

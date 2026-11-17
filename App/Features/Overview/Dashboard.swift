@@ -34,6 +34,9 @@ struct Dashboard: View {
                 NavigationLink { ExcelReportView() } label: {
                     HStack { Label("Reporte Excel del mes", systemImage: "chart.bar.doc.horizontal"); Spacer(); Image(systemName: "chevron.right").font(.caption.bold()) }.font(.subheadline.weight(.semibold)).padding(16).bolsilloCard()
                 }.buttonStyle(.plain)
+                NavigationLink { SpendingForecastView() } label: {
+                    HStack { Label("Proyección de próximos meses", systemImage: "calendar.badge.clock"); Spacer(); Image(systemName: "chevron.right").font(.caption.bold()) }.font(.subheadline.weight(.semibold)).padding(16).bolsilloCard()
+                }.buttonStyle(.plain)
                 NavigationLink { PlanningView() } label: {
                     Tile {
                         HStack {

@@ -133,6 +133,7 @@ struct AllocationBadge: View {
     let allocation: Allocation
     var body: some View {
         Label(allocation.title, systemImage: allocation.symbol)
+            .lineLimit(1).truncationMode(.tail)
             .font(.caption.weight(.semibold))
             .foregroundStyle(allocation.ownershipColor)
             .padding(.horizontal, 10).padding(.vertical, 6)

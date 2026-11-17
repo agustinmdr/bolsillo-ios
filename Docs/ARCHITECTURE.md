@@ -44,3 +44,7 @@ Una funcionalidad que requiera varias cargas asíncronas, validación de borrado
 ## Alcance de esta reorganización
 
 Se separaron los archivos de pantallas, se movieron modelos/servicios/componentes a sus carpetas y se reconstruyeron los grupos de Xcode sobre el proyecto existente. No se regeneraron los targets ni la configuración de firma. La lógica financiera existente se conserva; la configuración personal se desacopló del código para permitir un repositorio público.
+
+## Planificación y avisos
+
+`Core/Planning` contiene la proyección financiera y el planificador de avisos como cálculos Foundation, sin escribir movimientos ni solicitar permisos. `SpendingForecastView` presenta resultados; `ReminderSettingsView` edita preferencias locales. `CardReminders` adapta los planes a UserNotifications con un cupo compartido, y Store serializa su actualización para evitar que una tarea antigua reponga avisos obsoletos. Las preferencias se guardan en UserDefaults y los permisos pertenecen a iOS.

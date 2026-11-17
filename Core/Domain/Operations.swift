@@ -104,6 +104,7 @@ struct ScheduledCardReminder {
     let walletName: String
     let month: Month
     let fireDate: Date
+    let dueDate: Date
     var id: String { "bolsillo.card.\(walletID).\(month.id)" }
 }
 
@@ -140,10 +141,12 @@ extension Ledger {
         get { operations ?? OperationsData() }
         set { operations = newValue }
     }
-    func cardReminderPlan(now: Date = Date()) -> [ScheduledCardReminder] {
+    func cardReminderPlan(now: Date = Date(), daysBefore: Int = 1, hour: Int = 10, minute: Int = 0) -> [ScheduledCardReminder] {
+        guard (0...30).contains(daysBefore), (0...23).contains(hour), (0...59).contains(minute) else { return [] }
+        let horizon = Calendar.current.date(byAdding: .month, value: 12, to: now)!
         var result: [ScheduledCardReminder] = []
         for wallet in creditCards where wallet.dueDay != nil {
-            for offset in -1...2 {
+            for offset in -2...12 {
                 let month = Month(now).adding(offset)
                 guard let due = wallet.dueDate(in: month) else { continue }
                 let records = ops.statements.filter { $0.walletID == wallet.id && $0.month == month }
@@ -152,11 +155,8 @@ extension Ledger {
                     return recordedStatement(walletID: wallet.id, month: month, currency: currency) <= 0
                 }
                 if !records.isEmpty && allPaid { continue }
-                let day = Calendar.current.date(byAdding: .day, value: -1, to: due)!
-                var components = Calendar.current.dateComponents([.year, .month, .day], from: day)
-                components.hour = 10; components.minute = 0
-                guard let fire = Calendar.current.date(from: components), fire > now else { continue }
-                result.append(ScheduledCardReminder(walletID: wallet.id, walletName: wallet.name, month: month, fireDate: fire))
+                guard let fire = reminderDate(due: due, daysBefore: daysBefore, hour: hour, minute: minute), fire > now, fire <= horizon else { continue }
+                result.append(ScheduledCardReminder(walletID: wallet.id, walletName: wallet.displayName, month: month, fireDate: fire, dueDate: due))
             }
         }
         return Array(result.sorted { $0.fireDate < $1.fireDate }.prefix(60))

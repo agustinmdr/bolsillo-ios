@@ -13,7 +13,7 @@ struct BolsilloWalletQuery: EntityQuery {
         Store.shared.ledger.wallets.filter { identifiers.contains($0.id) }.map { BolsilloWalletEntity(id: $0.id, name: $0.displayName) }
     }
     @MainActor func suggestedEntities() async throws -> [BolsilloWalletEntity] {
-        Store.shared.ledger.wallets.map { BolsilloWalletEntity(id: $0.id, name: $0.displayName) }
+        Store.shared.ledger.activeWallets.map { BolsilloWalletEntity(id: $0.id, name: $0.displayName) }
     }
 }
 enum CaptureCurrency: String, AppEnum {

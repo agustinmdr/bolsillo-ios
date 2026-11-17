@@ -60,6 +60,9 @@ struct ExpenseForm: View {
                     LabeledContent("Tarjeta o cuenta") {
                         Picker("Tarjeta o cuenta", selection: $walletID) { ForEach(store.ledger.wallets.filter { !$0.isArchived || $0.id == existing?.walletID }) { Text($0.displayName).tag(Optional($0.id)) } }.pickerStyle(.menu).labelsHidden()
                     }
+                    if store.ledger.activeWallets.isEmpty && existing == nil {
+                        NavigationLink("Agregá una tarjeta o cuenta") { WalletSettings() }
+                    }
                     LabeledContent("Pagado por") {
                         Picker("Pagado por", selection: $payer) { ForEach(Person.allCases) { Text($0.title).tag($0) } }.pickerStyle(.menu).labelsHidden()
                     }
@@ -72,16 +75,24 @@ struct ExpenseForm: View {
                     }
                 }
                 VStack(alignment: .leading, spacing: 16) {
-                    LabeledContent("¿De quién es?") {
-                        Picker("¿De quién es este gasto?", selection: $allocation) {
-                            ForEach(Allocation.allCases) { option in
-                                Label(option.title, systemImage: option.symbol).tag(option)
+                    HStack(spacing: 12) {
+                        Text("¿De quién es?").lineLimit(1).layoutPriority(1)
+                        Spacer(minLength: 0)
+                        Menu {
+                            Picker("Responsabilidad", selection: $allocation) {
+                                ForEach(Allocation.allCases) { option in Label(option.title, systemImage: option.symbol).lineLimit(1).tag(option) }
                             }
-                        }.pickerStyle(.menu).labelsHidden().tint(allocation.ownershipColor)
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: allocation.symbol).fixedSize()
+                                Text(allocation.title).lineLimit(1).truncationMode(.tail)
+                                Image(systemName: "chevron.down").font(.caption2.weight(.semibold)).fixedSize()
+                            }.foregroundStyle(allocation.ownershipColor).frame(minHeight: 44)
+                        }.accessibilityLabel("Responsabilidad").accessibilityValue(allocation.title)
                     }
                     if allocation == .shared {
                         VStack(alignment: .leading, spacing: 10) {
-                            HStack { Text("Vos · \(100-Int(percent))%"); Spacer(); Text("Otra persona · \(Int(percent))%") }.font(.caption.weight(.semibold))
+                            HStack { Text("Vos · \(100-Int(percent))%"); Spacer(); Text("Otra persona · \(Int(percent))%") }.font(.caption.weight(.semibold)).lineLimit(1).truncationMode(.tail)
                             Slider(value: $percent, in: 0...100, step: 1).accessibilityLabel("Porcentaje de la otra persona")
                         }
                     }
@@ -153,6 +164,9 @@ struct ExpenseForm: View {
                 .onAppear(perform: populate)
                 .onChange(of: walletID) { _, id in if existing == nil, let w = store.ledger.wallets.first(where: { $0.id == id }) { payer = w.owner; suggestMonth() } }
                 .onChange(of: date) { _, _ in suggestMonth() }
+                .onChange(of: store.ledger.activeWallets.map(\.id)) { _, ids in
+                    if existing == nil, walletID.map({ ids.contains($0) }) != true { walletID = ids.first }
+                }
         }
     }
     private func suggestMonth() {
@@ -160,7 +174,7 @@ struct ExpenseForm: View {
         firstDate = wallet.suggestedStatementMonth(for: date).date
     }
     func populate() {
-        walletID = existing?.walletID ?? store.ledger.wallets.first?.id
+        walletID = existing?.walletID ?? store.ledger.activeWallets.first?.id
         categoryID = existing?.categoryID ?? store.ledger.categories.first(where: { $0.name == "Sin categorizar" })?.id ?? store.ledger.categories.first?.id
         firstDate = store.month.date
         autoMonth = existing == nil && store.month == Month(date)

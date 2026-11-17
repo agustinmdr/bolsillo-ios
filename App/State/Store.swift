@@ -11,6 +11,7 @@ import UniformTypeIdentifiers
     var currency = "ARS"
     var showAdd = false
     var reviewUndo: BulkUndo?
+    var reminderStatus: String?
     var backupNotice: String?
     var backupURLs: [URL] = []
     var migrationCandidates: [MigrationCandidate] = []
@@ -152,10 +153,12 @@ import UniformTypeIdentifiers
         let previous = reminderTask
         previous?.cancel()
         let data = ledger; let enabled = UserDefaults.standard.bool(forKey: "cardRemindersEnabled")
+        let preferences = ReminderPreferences.load()
         reminderTask = Task {
             await previous?.value
             guard !Task.isCancelled else { return }
-            await CardReminders.refresh(ledger: data, enabled: enabled)
+            let status = await CardReminders.refresh(ledger: data, enabled: enabled, preferences: preferences)
+            if !Task.isCancelled { self.reminderStatus = status }
         }
     }
     private func importBundledHistoryIfNeeded() {

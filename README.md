@@ -58,6 +58,24 @@ Se organiza por funcionalidades, con estado observable y servicios separados. La
 
 Es una aplicación de los principios de MVVM adecuada para el tamaño actual: responsabilidades separadas y estado observable. No hay un ViewModel vacío por pantalla. Ver [decisiones y dependencias](Docs/ARCHITECTURE.md).
 
+## Proyección y recordatorios
+
+En Resumen → Proyección de próximos meses (también en Planificar) se muestran seis o doce meses, con Total / Tu parte / Parte de otra persona y ARS/USD separados. El detalle distingue fijos, cuotas, otros cargos registrados y cuotas históricas estimadas. Una lista indica cuándo finaliza cada plan y desde qué mes se libera ese importe.
+
+Las cuotas nativas distribuyen centavos exactamente. Las estimaciones históricas usan la última cuota de una serie identificable y solo se muestran después de su último cargo importado; no crean gastos, no reemplazan el histórico y no modifican la sincronización. Si ya existe un plan nativo equivalente o la tarjeta está archivada, no se generan estimaciones históricas. Las series indistinguibles quedan advertidas para revisión. Los fijos usan su importe actual; la proyección no infiere aumentos, compras nuevas ni ingresos.
+
+En Ajustes → Recordatorios (también en Planificar y Tarjetas) podés activar avisos de tarjetas y fijos por separado, elegir entre el mismo día y 30 días antes y configurar la hora. Para los fijos se elige el día de vencimiento de cada gasto; un día inexistente se ajusta al último del mes. Se respetan inicio y fin de recurrencia. Los resúmenes conciliados y pagados dejan de generar el aviso de tarjeta.
+
+Los avisos no muestran importes. Las preferencias de recordatorios son locales a cada dispositivo y no cambian el ledger. Se programan hasta 60 avisos dentro de los siguientes doce meses y se actualizan al abrir o guardar. El permiso se pide al activar los avisos; si iOS lo deniega, hay acceso a sus ajustes. Se informa cuántos avisos se programaron y si hubo errores. La entrega real requiere verificar permisos y configuración del iPhone.
+
+## Administrar tarjetas y cuentas
+
+Desde Ajustes → Tarjetas y cuentas, o Tarjetas y resúmenes → Administrar, podés agregar tarjetas o cuentas, editar nombre/titular/extensión y configurar cierre/vencimiento. Para quitar un medio, deslizá su fila o abrilo y tocá Quitar; se solicita confirmación y queda archivado, conservando sus gastos, IDs y resúmenes. Se restaura desde Tarjetas y cuentas quitadas.
+
+Los medios quitados no se ofrecen en cargas nuevas ni en las sugerencias de Atajos. Una automatización que conserve una tarjeta quitada informa que hay que restaurarla o elegir otra. El histórico sigue permitiendo consultar y editar gastos de esa cuenta. Si no quedan medios activos, el formulario permite ir a agregarlos.
+
+La responsabilidad en el formulario se muestra en una sola línea; se trunca con puntos suspensivos cuando no entra. El menú conserva las tres opciones y VoiceOver lee su nombre completo. Las etiquetas de responsabilidad de los listados usan el mismo límite de una línea.
+
 ## Funcionalidades
 
 - Gastos propios, compartidos o de otra persona; pagador y porcentajes independientes.

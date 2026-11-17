@@ -12,13 +12,13 @@ struct PlanningView: View {
         BolsilloList {
             Section { PeriodPicker() }
             Section {
-                Text("Próximos 6 meses").font(.headline)
-                Chart(0..<6, id: \.self) { offset in
-                    let m = store.month.adding(offset)
-                    let total = store.ledger.charges(in: m, currency: store.currency).reduce(Int64(0)) { $0+$1.agusShare }
-                    BarMark(x: .value("Mes", m.date, unit: .month), y: .value("Tu parte", Double(total)/100)).foregroundStyle(Palette.accent.gradient).cornerRadius(5)
-                }.chartXAxis { AxisMarks(values: .stride(by: .month)) { _ in AxisValueLabel(format: .dateTime.month(.abbreviated)) } }.frame(height: 170)
-                Text("Tu parte de compras y recurrentes ya cargados. No incluye gastos futuros que todavía no registraste.").font(.caption).foregroundStyle(Palette.muted)
+                NavigationLink { SpendingForecastView() } label: {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Label("Proyección de próximos meses", systemImage: "chart.bar.xaxis").font(.headline)
+                        Text("Fijos, cuotas y cuándo se liberan tus compromisos").font(.caption).foregroundStyle(Palette.muted)
+                    }.padding(.vertical, 4)
+                }
+                NavigationLink { ReminderSettingsView() } label: { Label("Recordatorios de tarjetas y fijos", systemImage: "bell.badge") }
             }
             Section {
                 ForEach(store.ledger.budgets.filter { $0.currency == store.currency }) { budget in

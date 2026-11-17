@@ -61,6 +61,10 @@
 		F41880B2EBCD7DF53B1283CB = {isa = PBXBuildFile; fileRef = 5D706A4BDB676D752CF6519F; };
 		371090BF14C070CB341E72A8 = {isa = PBXBuildFile; fileRef = B45441DFBF0BB9C2E78BC163; };
 250FCC0CB73BDCD8F73A50C5 = {isa = PBXBuildFile; fileRef = C2B1A9A45792ED336546099C; };
+00B126E3990F486969E38DF9 = {isa = PBXBuildFile; fileRef = A84DED0CC00C2D2B9304B223; };
+D9EBF5EB156D09A2C1E5FC08 = {isa = PBXBuildFile; fileRef = E73C646A9ABCD9CFC7355283; };
+42C1D0282D89AF2335081775 = {isa = PBXBuildFile; fileRef = E73C646A9ABCD9CFC7355283; };
+5356C8C420E030F536E30440 = {isa = PBXBuildFile; fileRef = 87145858FA62E3986566C109; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +163,10 @@ E2091E2EA993D901A00FB636 = {isa = PBXFileReference; lastKnownFileType = net.dari
 4A9F1288681D5C1C8DB5E556 = {isa = PBXFileReference; lastKnownFileType = text.json; path = "private-setup.json"; sourceTree = "<group>"; };
 AA4ACA445B3FBAF47CDE31AC = {isa = PBXFileReference; lastKnownFileType = text; path = "README.md"; sourceTree = "<group>"; };
 7A4FF7F962C7F66B27D6CDC6 = {isa = PBXFileReference; lastKnownFileType = text; path = ".gitignore"; sourceTree = "<group>"; };
+A84DED0CC00C2D2B9304B223 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingForecast.swift"; sourceTree = "<group>"; };
+E73C646A9ABCD9CFC7355283 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderPreferences.swift"; sourceTree = "<group>"; };
+87145858FA62E3986566C109 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingForecastView.swift"; sourceTree = "<group>"; };
+086E99D3B40F55CE052129A5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlanningChecks.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +201,7 @@ AA4ACA445B3FBAF47CDE31AC = {isa = PBXFileReference; lastKnownFileType = text; pa
 		0E8C0B1FF19341220599F592 = {isa = PBXGroup; children = (C020D721CAE1FD60A8429229, A915E8B1E482E35AB63D1147, 19A250C31904B42FE002B7D5, ECCDA01FF92B8E137A665D22,); name = "Expenses"; path = "Expenses"; sourceTree = "<group>"; };
 		817CEA5401090BAE1BB5086D = {isa = PBXGroup; children = (6A53ED54F7734A753835CA0D, 7E9B979B90952D7DC6A53A7E,); name = "Import"; path = "Import"; sourceTree = "<group>"; };
 		C9D4A121328B08CD20050C19 = {isa = PBXGroup; children = (7978D360E6157CF6FB258422, 000000000000000000000005,); name = "Overview"; path = "Overview"; sourceTree = "<group>"; };
-		39F945833E69CB5E8CA7C417 = {isa = PBXGroup; children = (01F16BE813B0D9A9E8C14C3D,); name = "Planning"; path = "Planning"; sourceTree = "<group>"; };
+		39F945833E69CB5E8CA7C417 = {isa = PBXGroup; children = (87145858FA62E3986566C109, 01F16BE813B0D9A9E8C14C3D,); name = "Planning"; path = "Planning"; sourceTree = "<group>"; };
 		CC062CD40A0755CA8C657BAA = {isa = PBXGroup; children = (1235E0453996AC63E046AEAC,); name = "Reports"; path = "Reports"; sourceTree = "<group>"; };
 		B1516C17A0947425CAA4CFF3 = {isa = PBXGroup; children = (51424B66A67CD5DB87276D70, 5D706A4BDB676D752CF6519F, B45441DFBF0BB9C2E78BC163,); name = "Rules"; path = "Rules"; sourceTree = "<group>"; };
 		39D0502068253FFA696AA95C = {isa = PBXGroup; children = (ADD424158E945D164D6C9AC4, E30000000000000000000002, FE5BF07E8ABC94A4731AD8D5, 000000000000000000000006, F90E9D3C0B6985623A957F1D,); name = "Settings"; path = "Settings"; sourceTree = "<group>"; };
@@ -214,7 +222,7 @@ AA4ACA445B3FBAF47CDE31AC = {isa = PBXFileReference; lastKnownFileType = text; pa
 		1001213A369CB72BF983C6A4 = {isa = PBXGroup; children = (C30000000000000000000001,); name = "Storage"; path = "Storage"; sourceTree = "<group>"; };
 		FC6D6367ACD9A7FCBFBDD321 = {isa = PBXGroup; children = (B20000000000000000000003,); name = "Wallet"; path = "Wallet"; sourceTree = "<group>"; };
 		CB01740B3B3DF35F1195E987 = {isa = PBXGroup; children = (7B7C30CB56AA61767B6E35CA, 75C53E16D6D5EF485A13E77D, 1001213A369CB72BF983C6A4, FC6D6367ACD9A7FCBFBDD321,); name = "Services"; path = "Services"; sourceTree = "<group>"; };
-		410188F9DC6E499FEC68BCF6 = {isa = PBXGroup; children = (26C036AA58166B49C6CC0C1C, F2FFE572F4B0FBA8C5C9E6A2, CB01740B3B3DF35F1195E987,); name = "Core"; path = "Core"; sourceTree = "<group>"; };
+		410188F9DC6E499FEC68BCF6 = {isa = PBXGroup; children = (6356E6B58F54238E4DE98D9A, 26C036AA58166B49C6CC0C1C, F2FFE572F4B0FBA8C5C9E6A2, CB01740B3B3DF35F1195E987,); name = "Core"; path = "Core"; sourceTree = "<group>"; };
 		F3C2BED4BD0E21B6F90C5195 = {isa = PBXGroup; children = (ED9056625C8C0EA80665C584, EE6801FCC6C46EAE04E42E55, 95AF997F0BB7BB8EC8420734, 12CD39C48BAC9C6733EF9F14, 49DD7532A90060E8027CE7D2,); name = "Components"; path = "Components"; sourceTree = "<group>"; };
 		490CD259D3EED38A828CDE6E = {isa = PBXGroup; children = (F3C2BED4BD0E21B6F90C5195, A10000000000000000000003,); name = "DesignSystem"; path = "DesignSystem"; sourceTree = "<group>"; };
 		B2AC4E3EF1A269E0129E087F = {isa = PBXGroup; children = (C2B1A9A45792ED336546099C, C30000000000000000000004, 000000000000000000000008,); name = "Importacion"; path = "Importacion"; sourceTree = "<group>"; };
@@ -222,11 +230,12 @@ AA4ACA445B3FBAF47CDE31AC = {isa = PBXFileReference; lastKnownFileType = text; pa
 		00000000000000000000000D = {isa = PBXGroup; children = (156052F04525D0F710673CF0, 86E76DCFD8B38CD6265704AD, C3BBE33D2D6E650AB8728D33, A024F06580C79B7582C3806A, AA4ACA445B3FBAF47CDE31AC, 7A4FF7F962C7F66B27D6CDC6, 1C48CE29E4E135EE62951B22, 410188F9DC6E499FEC68BCF6, 490CD259D3EED38A828CDE6E, B2AC4E3EF1A269E0129E087F, DDF05173B376DE398B5EAD82, 00000000000000000000000C,); sourceTree = "<group>"; };
 F58302C2F4E306BBCCEC9D25 = {isa = PBXGroup; children = (EB1F920998E611429B61E3F9,); name = "CloudSync"; path = "CloudSync"; sourceTree = "<group>"; };
 5D8AFCA564BE4452126E9783 = {isa = PBXGroup; children = (F2F0E19DEA0C6D5D386495CD, CBAADB369158466147B178A1, 949170A7281F94E9F930176D,); name = "ExcelReport"; path = "ExcelReport"; sourceTree = "<group>"; };
-156052F04525D0F710673CF0 = {isa = PBXGroup; children = (F58302C2F4E306BBCCEC9D25, 5D8AFCA564BE4452126E9783, 50CC8593D597FE6644106892, DD81EAB323196834D5267568,); name = "Tests"; path = "Tests"; sourceTree = "<group>"; };
+156052F04525D0F710673CF0 = {isa = PBXGroup; children = (086E99D3B40F55CE052129A5, F58302C2F4E306BBCCEC9D25, 5D8AFCA564BE4452126E9783, 50CC8593D597FE6644106892, DD81EAB323196834D5267568,); name = "Tests"; path = "Tests"; sourceTree = "<group>"; };
 86E76DCFD8B38CD6265704AD = {isa = PBXGroup; children = (E2091E2EA993D901A00FB636, 99062A734E05EA45637AB2A9,); name = "Docs"; path = "Docs"; sourceTree = "<group>"; };
 C3BBE33D2D6E650AB8728D33 = {isa = PBXGroup; children = (34E77966D63E49BEC5D1E975, 22FA64002F75EF68E17E1864,); name = "Scripts"; path = "Scripts"; sourceTree = "<group>"; };
 C5EFB5D354042DF8493EBE65 = {isa = PBXGroup; children = (4483A75551A06726F5E72B6E, 2C87EB6B84320763686412D2, 4A9F1288681D5C1C8DB5E556,); name = "Examples"; path = "Examples"; sourceTree = "<group>"; };
 A024F06580C79B7582C3806A = {isa = PBXGroup; children = (C5EFB5D354042DF8493EBE65,); name = "Resources"; path = "Resources"; sourceTree = "<group>"; };
+6356E6B58F54238E4DE98D9A = {isa = PBXGroup; children = (A84DED0CC00C2D2B9304B223, E73C646A9ABCD9CFC7355283,); name = "Planning"; path = "Planning"; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -321,6 +330,7 @@ A024F06580C79B7582C3806A = {isa = PBXGroup; children = (C5EFB5D354042DF8493EBE65
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+42C1D0282D89AF2335081775,
 				000000000000000000000011 /* Core/Models/Finance.swift in Sources */,
  C50000000000000000000000,
                 A10000000000000000000001,
@@ -332,6 +342,9 @@ A024F06580C79B7582C3806A = {isa = PBXGroup; children = (C5EFB5D354042DF8493EBE65
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+5356C8C420E030F536E30440,
+D9EBF5EB156D09A2C1E5FC08,
+00B126E3990F486969E38DF9,
 				00000000000000000000001E /* Core/Models/Finance.swift in Sources */,
  E40000000000000000000002,
  E40000000000000000000001,

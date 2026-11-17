@@ -23,6 +23,11 @@ struct OperationsPreviewHost: View {
                 }
             }.navigationTitle("Responsabilidades").navigationBarTitleDisplayMode(.inline)
         case "expense": ExpenseForm()
+        case "expense-other", "expense-shared":
+            if let wallet = store.ledger.activeWallets.first, let category = store.ledger.categories.first {
+                let example = Expense(title: "Compra de ejemplo", cents: 123450, firstMonth: Month(), walletID: wallet.id, categoryID: category.id, allocation: route == "expense-other" ? .mai : .shared)
+                ExpenseForm(existing: example)
+            } else { Text("Agregá un medio de pago para ver el formulario de ejemplo.") }
         case "confirmed-december":
             BolsilloList {
                 Section("Consumo noviembre · resumen diciembre") {
@@ -35,6 +40,9 @@ struct OperationsPreviewHost: View {
         case "excel": ExcelReportView().task {
             if ProcessInfo.processInfo.arguments.contains("--export-excel-qa") { _ = await store.exportExcel() }
         }
+        case "wallets": WalletSettings()
+        case "forecast": SpendingForecastView()
+        case "reminders": ReminderSettingsView()
         case "cloud": CloudSettingsView()
         case "review": BulkReviewView()
         case "rules": MerchantRulesView()

@@ -3,7 +3,7 @@
 Desde la raíz del proyecto:
 
 ```sh
-xcrun swiftc -module-cache-path /private/tmp/BolsilloModuleCache Core/Models/Finance.swift Core/Domain/Operations.swift Core/Services/Storage/LedgerStorage.swift Core/Services/Export/ExcelReport.swift Tests/ExcelReport/main.swift -o /private/tmp/bolsillo-excel-tests
+xcrun swiftc -module-cache-path /private/tmp/BolsilloModuleCache Core/Models/Finance.swift Core/Domain/Operations.swift Core/Planning/*.swift Core/Services/Storage/LedgerStorage.swift Core/Services/Export/ExcelReport.swift Tests/ExcelReport/main.swift -o /private/tmp/bolsillo-excel-tests
 /private/tmp/bolsillo-excel-tests /private/tmp/BolsilloExcelQA
 python3 Tests/ExcelReport/verify.py /private/tmp/BolsilloExcelQA
 ```

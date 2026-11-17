@@ -1,11 +1,12 @@
 import Foundation
 
 enum WalletCaptureError: LocalizedError {
-    case missingAmount, missingMerchant, missingWallet, invalidCurrency
+    case missingAmount, missingMerchant, missingWallet, archivedWallet, invalidCurrency
     var errorDescription: String? {
         switch self {
         case .missingAmount: return "Falta un importe válido. En Atajos, vinculá Importe a Amount de la transacción de Wallet. No se guardó el gasto."
         case .missingMerchant: return "Falta el comercio. En Atajos, vinculá Comercio a Merchant de la transacción. No se guardó el gasto."
+        case .archivedWallet: return "La tarjeta fue quitada. Restaurala en Bolsillo o elegí otra en la automatización."
         case .missingWallet: return "La tarjeta seleccionada ya no existe en Bolsillo. Volvé a elegirla en la automatización."
         case .invalidCurrency: return "La moneda debe ser ARS o USD. No se guardó el gasto."
         }
@@ -32,6 +33,7 @@ struct WalletCapture {
         guard !clean.isEmpty, clean.count <= 500 else { throw WalletCaptureError.missingMerchant }
         guard ["ARS", "USD"].contains(currency) else { throw WalletCaptureError.invalidCurrency }
         guard let wallet = ledger.wallets.first(where: { $0.id == walletID }) else { throw WalletCaptureError.missingWallet }
+        guard !wallet.isArchived else { throw WalletCaptureError.archivedWallet }
         let identifier = eventID?.trimmingCharacters(in: .whitespacesAndNewlines)
         let sourceKey = identifier.flatMap { $0.isEmpty ? nil : "apple-pay-id:" + $0 }
         let duplicate = ledger.expenses.contains { e in

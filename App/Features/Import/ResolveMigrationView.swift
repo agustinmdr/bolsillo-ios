@@ -68,7 +68,7 @@ struct ResolveMigrationView: View {
                 }
                 if mode == .expense {
                     Section("Cuenta y responsable") {
-                        Picker("Cuenta", selection: $walletID) { ForEach(store.ledger.wallets) { Text($0.displayName).tag(Optional($0.id)) } }
+                        Picker("Cuenta", selection: $walletID) { ForEach(store.ledger.activeWallets) { Text($0.displayName).tag(Optional($0.id)) } }
                         Picker("Pagado por", selection: $paidBy) { ForEach(Person.allCases) { Text($0.title).tag($0) } }
                         Picker("Responsable", selection: $allocation) { ForEach(Allocation.allCases) { Text($0.title).tag($0) } }
                         if allocation == .shared { Text("Otra persona: \(Int(percent))%"); Slider(value: $percent, in: 0...100, step: 1) }
@@ -82,7 +82,7 @@ struct ResolveMigrationView: View {
                 title = candidate.title; amount = editableAmount(abs(candidate.cents)); currency = candidate.currency; date = candidate.month.date
                 categoryID = store.ledger.categories.first { $0.name == "Sin categorizar" }?.id
                 paidBy = candidate.paidBy ?? .agus
-                walletID = store.ledger.wallets.first { $0.name == (paidBy == .mai ? "Pagado por Mai" : "Efectivo / transferencia") }?.id ?? store.ledger.wallets.first?.id
+                walletID = store.ledger.activeWallets.first { $0.name == (paidBy == .mai ? "Pagado por Mai" : "Efectivo / transferencia") }?.id ?? store.ledger.activeWallets.first?.id
                 mode = !store.ledger.matchingExpenses(for: candidate).isEmpty ? .link : candidate.kind == "expense" || candidate.kind == "fixed" ? .expense : .ignore
             }
             .confirmationDialog("¿\(mode.rawValue)?", isPresented: $confirming, titleVisibility: .visible) { Button("Confirmar", action: resolve) }
