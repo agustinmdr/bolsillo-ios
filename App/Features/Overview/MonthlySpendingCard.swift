@@ -59,6 +59,7 @@ struct MonthlySpendingCard: View {
                 if selectedRows.isEmpty { Text("No hay gastos registrados para este mes.").font(.caption).foregroundStyle(Palette.muted) }
                 ForEach(selectedRows) { row in
                     if let category = store.ledger.categories.first(where: { $0.id == row.categoryID }) {
+                        NavigationLink { CategorySpendingView(categoryID: category.id, month: selectedMonth, currency: store.currency, portion: portion) } label: {
                         HStack {
                             Circle().fill(Palette.categoryColor(category)).frame(width: 8, height: 8)
                             Label(category.name, systemImage: category.symbol).font(.caption)
@@ -68,6 +69,7 @@ struct MonthlySpendingCard: View {
                                 Text(row.cents < 0 ? "Reintegro neto" : selectedTotal > 0 ? "\(Int((Double(row.cents)/Double(selectedTotal)*100).rounded()))%" : "Gasto").font(.caption2).foregroundStyle(Palette.muted)
                             }
                         }
+                        }.buttonStyle(.plain).foregroundStyle(Palette.text).frame(minHeight: 44)
                     }
                 }
                 if selectedRows.contains(where: { row in store.ledger.categories.contains { $0.id == row.categoryID && $0.name == "Sin categorizar" } }) {

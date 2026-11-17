@@ -6,6 +6,7 @@ struct ExpenseForm: View {
     @Environment(Store.self) private var store
     @Environment(\.dismiss) private var dismiss
     var existing: Expense?
+    var displayMonth: Month? = nil
     @State private var title = ""
     @State private var amount = ""
     @State private var currency = "ARS"
@@ -35,7 +36,8 @@ struct ExpenseForm: View {
         var preview = Expense(title: title, cents: cents, currency: currency, firstMonth: Month(firstDate), installments: isHistorical || recurring ? 1 : installments, recurring: !isHistorical && recurring, walletID: walletID, categoryID: categoryID)
         preview.firstInstallment = !isHistorical && !recurring && currentInstallment > 1 ? currentInstallment : nil
         if isHistorical { preview.sourceKey = existing?.sourceKey; preview.reportedInstallment = ReportedInstallment(number: reportedNumber, total: reportedTotal) }
-        let target = preview.occurrence(in: store.month) == nil ? preview.firstMonth : store.month
+        let contextMonth = displayMonth ?? store.month
+        let target = preview.occurrence(in: contextMonth) == nil ? preview.firstMonth : contextMonth
         return preview.occurrence(in: target)
     }
     var valid: Bool { !title.trimmingCharacters(in: .whitespaces).isEmpty && parseCents(amount) != nil && walletID != nil && categoryID != nil && (!recurring || !hasEnd || Month(endDate) >= Month(firstDate)) && (isHistorical || recurring || (1...installments).contains(currentInstallment)) }

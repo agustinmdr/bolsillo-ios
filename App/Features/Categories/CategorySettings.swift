@@ -5,6 +5,8 @@ import AppIntents
 struct CategorySettings: View {
     @Environment(Store.self) private var store
     @State private var selected: Category?
+    @State private var breakdown: Category?
+    @State private var editingCategories = false
     @State private var showing = false
     @State private var name = ""
     @State private var section = "Personal"
@@ -16,14 +18,17 @@ struct CategorySettings: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 PeriodPicker()
-                Text("Ordená tus gastos a tu manera. Tocá una categoría para editar su nombre, sección o ícono.").font(.subheadline).foregroundStyle(Palette.muted)
+                Text(editingCategories ? "Tocá una categoría para editar su nombre, sección o ícono." : "Tocá una categoría para ver sus gastos y el desglose del mes.").font(.subheadline).foregroundStyle(Palette.muted)
                 if visibleCategories.isEmpty { ContentUnavailableView.search(text: search) }
                 ForEach(Array(Set(visibleCategories.map(\.section))).sorted(), id: \.self) { group in
                     VStack(alignment: .leading, spacing: 12) {
                         Text(group).font(.headline).padding(.horizontal, 4)
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 145), spacing: 12)], spacing: 12) {
                             ForEach(visibleCategories.filter { $0.section == group }) { category in
-                                Button { selected = category; name = category.name; section = category.section; symbol = category.symbol; showing = true } label: {
+                                Button {
+                                    if editingCategories { selected = category; name = category.name; section = category.section; symbol = category.symbol; showing = true }
+                                    else { breakdown = category }
+                                } label: {
                                     VStack(alignment: .leading, spacing: 12) {
                                         Image(systemName: category.symbol).font(.system(size: 18, weight: .medium)).foregroundStyle(Palette.categoryColor(category)).frame(width: 36, height: 36).background(Palette.categoryColor(category).opacity(0.12), in: RoundedRectangle(cornerRadius: 11))
                                         Text(category.name).font(.subheadline.weight(.semibold)).foregroundStyle(Palette.text)
@@ -42,7 +47,10 @@ struct CategorySettings: View {
             }.padding(20)
         }.bolsilloScreen().navigationTitle("Categorías").navigationBarTitleDisplayMode(.inline)
             .searchable(text: $search, prompt: "Buscar categoría o sección")
-            .toolbar { Button { selected = nil; name = ""; section = "Personal"; symbol = "bag.fill"; showing = true } label: { Image(systemName: "plus") }.accessibilityLabel("Agregar categoría") }
+            .navigationDestination(item: $breakdown) { category in CategorySpendingView(categoryID: category.id, month: store.month, currency: store.currency) }
+            .toolbar {
+                Button(editingCategories ? "Listo" : "Editar") { editingCategories.toggle() }
+                Button { selected = nil; name = ""; section = "Personal"; symbol = "bag.fill"; showing = true } label: { Image(systemName: "plus") }.accessibilityLabel("Agregar categoría") }
             .sheet(isPresented: $showing) { NavigationStack { BolsilloForm {
                 Section("Organización") { TextField("Nombre", text: $name); TextField("Sección", text: $section) }
                 Section("Elegí un ícono") {

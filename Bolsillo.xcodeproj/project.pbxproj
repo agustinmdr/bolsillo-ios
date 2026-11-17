@@ -66,6 +66,7 @@ D9EBF5EB156D09A2C1E5FC08 = {isa = PBXBuildFile; fileRef = E73C646A9ABCD9CFC73552
 42C1D0282D89AF2335081775 = {isa = PBXBuildFile; fileRef = E73C646A9ABCD9CFC7355283; };
 5356C8C420E030F536E30440 = {isa = PBXBuildFile; fileRef = 87145858FA62E3986566C109; };
 594FE76A36C728EA9F282E5B = {isa = PBXBuildFile; fileRef = 37DD74562E96A52904070E6D; };
+0C28D456DF2FC15C2D667787 = {isa = PBXBuildFile; fileRef = 6DE1EC39A58A21A645B4825C; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,7 @@ E73C646A9ABCD9CFC7355283 = {isa = PBXFileReference; lastKnownFileType = sourceco
 87145858FA62E3986566C109 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingForecastView.swift"; sourceTree = "<group>"; };
 086E99D3B40F55CE052129A5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlanningChecks.swift"; sourceTree = "<group>"; };
 37DD74562E96A52904070E6D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardDismissal.swift"; sourceTree = "<group>"; };
+6DE1EC39A58A21A645B4825C = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategorySpendingView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,7 +201,7 @@ E73C646A9ABCD9CFC7355283 = {isa = PBXFileReference; lastKnownFileType = sourceco
 			sourceTree = "<group>";
 		};
 		A04F46B39DCB5F4C032F10DA = {isa = PBXGroup; children = (000000000000000000000002, 000000000000000000000004,); name = "Application"; path = "Application"; sourceTree = "<group>"; };
-		B57B9A0238C42A07FB07BB5F = {isa = PBXGroup; children = (1024A407B1E381CA8F52089B,); name = "Categories"; path = "Categories"; sourceTree = "<group>"; };
+		B57B9A0238C42A07FB07BB5F = {isa = PBXGroup; children = (6DE1EC39A58A21A645B4825C, 1024A407B1E381CA8F52089B,); name = "Categories"; path = "Categories"; sourceTree = "<group>"; };
 		0E8C0B1FF19341220599F592 = {isa = PBXGroup; children = (C020D721CAE1FD60A8429229, A915E8B1E482E35AB63D1147, 19A250C31904B42FE002B7D5, ECCDA01FF92B8E137A665D22,); name = "Expenses"; path = "Expenses"; sourceTree = "<group>"; };
 		817CEA5401090BAE1BB5086D = {isa = PBXGroup; children = (6A53ED54F7734A753835CA0D, 7E9B979B90952D7DC6A53A7E,); name = "Import"; path = "Import"; sourceTree = "<group>"; };
 		C9D4A121328B08CD20050C19 = {isa = PBXGroup; children = (7978D360E6157CF6FB258422, 000000000000000000000005,); name = "Overview"; path = "Overview"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@ A024F06580C79B7582C3806A = {isa = PBXGroup; children = (C5EFB5D354042DF8493EBE65
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+0C28D456DF2FC15C2D667787,
 594FE76A36C728EA9F282E5B,
 5356C8C420E030F536E30440,
 D9EBF5EB156D09A2C1E5FC08,

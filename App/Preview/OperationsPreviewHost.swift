@@ -45,6 +45,10 @@ struct OperationsPreviewHost: View {
         case "excel": ExcelReportView().task {
             if ProcessInfo.processInfo.arguments.contains("--export-excel-qa") { _ = await store.exportExcel() }
         }
+        case "category-breakdown":
+            if let category = store.ledger.categories.first(where: { item in store.charges.contains { $0.expense.categoryID == item.id } }) {
+                CategorySpendingView(categoryID: category.id, month: store.month, currency: store.currency)
+            }
         case "wallets": WalletSettings()
         case "forecast": SpendingForecastView()
         case "reminders": ReminderSettingsView()

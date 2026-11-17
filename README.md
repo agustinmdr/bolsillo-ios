@@ -100,6 +100,14 @@ Resumen muestra una tarjeta con Saldo disponible, Total de gastos y Sueldo e ing
 
 Si todavía no hay ingresos cargados, el saldo muestra un guion y un mensaje para agregarlos. Tocá el + junto a Sueldo e ingresos para registrar un ingreso directamente desde Resumen. La entrada conserva el mes y moneda elegidos al abrir y no se repite automáticamente. Los saldos negativos se muestran en rojo. No modifica ni mueve gastos existentes.
 
+## Ver gastos por categoría
+
+En Categorías, tocá una tarjeta para abrir el desglose del mes. También podés tocar una categoría en Resumen → Por categoría o en el detalle de Gastos por mes. El desglose conserva el mes, la moneda y la parte seleccionada cuando se abre desde el gráfico.
+
+Se muestran el total, la cantidad de movimientos, subtotales por tarjeta/cuenta y todos los cargos de esa categoría. Podés cambiar mes, moneda y Total / Tu parte / Parte de otra persona sin modificar el período de las demás pantallas. Las cuotas cuentan por su cargo mensual y los reintegros restan. Tocá un movimiento para ver o editar su detalle; la vista previa de cuotas usa el mes del desglose.
+
+Para editar nombre, sección o ícono de una categoría, activá Editar en la galería y tocá la categoría. Listo vuelve al modo de consulta. El botón + continúa creando categorías.
+
 ## Funcionalidades
 
 - Gastos propios, compartidos o de otra persona; pagador y porcentajes independientes.

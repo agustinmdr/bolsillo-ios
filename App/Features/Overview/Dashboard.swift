@@ -110,8 +110,11 @@ struct Dashboard: View {
                             SectorMark(angle: .value("Importe", Double(amount)), innerRadius: .ratio(0.7), angularInset: 3).foregroundStyle(by: .value("Categoría", c.id.uuidString)).cornerRadius(5)
                         }.chartForegroundStyleScale(domain: store.ledger.categories.map { $0.id.uuidString }, range: store.ledger.categories.map { Palette.categoryColor($0) }).chartLegend(.hidden).frame(height: 160).accessibilityLabel("Distribución del gasto por categoría")
                         ForEach(categoryTotals.prefix(4), id: \.0.id) { c, amount in
-                            HStack { Circle().fill(Palette.categoryColor(c)).frame(width: 9, height: 9); Label(c.name, systemImage: c.symbol).font(.subheadline); Spacer(); Text(displayedAmount(amount)).font(.subheadline.bold()) }
+                            NavigationLink { CategorySpendingView(categoryID: c.id, month: store.month, currency: store.currency) } label: {
+                                HStack { Circle().fill(Palette.categoryColor(c)).frame(width: 9, height: 9); Label(c.name, systemImage: c.symbol).font(.subheadline); Spacer(); Text(displayedAmount(amount)).font(.subheadline.bold()); Image(systemName: "chevron.right").font(.caption).foregroundStyle(Palette.muted) }.foregroundStyle(Palette.text).frame(minHeight: 44).contentShape(Rectangle())
+                            }.buttonStyle(.plain)
                         }
+                        NavigationLink("Ver todas las categorías") { CategorySettings() }.font(.subheadline)
                 }
                 }
                 Tile {
