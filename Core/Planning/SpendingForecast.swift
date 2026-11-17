@@ -46,7 +46,7 @@ extension Ledger {
         }
         var releases: [InstallmentRelease] = []
         for expense in expenses where expense.currency == currency && !expense.recurring && expense.installments > 1 {
-            let end = expense.firstMonth.adding(expense.installments - 1)
+            let end = expense.firstMonth.adding(expense.installments - expense.firstInstallmentNumber)
             if end >= start, let last = expense.occurrence(in: end), share(last) > 0 {
                 releases.append(InstallmentRelease(expense: expense, lastMonth: end, monthlyCents: share(last), estimated: false))
             }
@@ -63,7 +63,7 @@ extension Ledger {
         var ambiguous = 0
         for (key, group) in groups {
             // Si se reconstruyó el mismo plan como compra nativa, esa serie ya se proyecta.
-            if expenses.contains(where: { $0.currency == currency && !$0.recurring && $0.installments == key.total && $0.walletID == key.wallet && $0.firstMonth == key.first && normalized($0.displayTitle) == key.title }) { continue }
+            if expenses.contains(where: { $0.currency == currency && !$0.recurring && $0.installments == key.total && $0.walletID == key.wallet && $0.firstMonth.adding(1-$0.firstInstallmentNumber) == key.first && normalized($0.displayTitle) == key.title }) { continue }
             guard let latest = group.max(by: { $0.firstMonth < $1.firstMonth }), let report = latest.historicalInstallment else { continue }
             let end = latest.firstMonth.adding(report.total-report.number)
             guard end >= start else { continue }

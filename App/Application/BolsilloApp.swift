@@ -28,7 +28,7 @@ enum AppearancePreference: String, CaseIterable, Identifiable {
     init() { Palette.configureControls() }
     var body: some Scene {
         WindowGroup {
-            RootView().environment(store).tint(Palette.accent)
+            RootView().environment(store).tint(Palette.accent).dismissKeyboardOnOutsideTap()
                 .preferredColorScheme(appearance.colorScheme)
                 .onOpenURL { url in if url.scheme == "bolsillo" && url.host == "nuevo" { store.month = Month(); store.showAdd = true } }
                 .onAppear { store.updateWidget(); store.refreshReminders() }

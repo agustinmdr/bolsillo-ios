@@ -23,6 +23,11 @@ struct OperationsPreviewHost: View {
                 }
             }.navigationTitle("Responsabilidades").navigationBarTitleDisplayMode(.inline)
         case "expense": ExpenseForm()
+        case "expense-installments":
+            if let wallet = store.ledger.activeWallets.first, let category = store.ledger.categories.first {
+                let example = Expense(title: "Compra de ejemplo", cents: 6000000, firstMonth: Month(), installments: 6, walletID: wallet.id, categoryID: category.id, firstInstallment: 3)
+                ExpenseForm(existing: example)
+            }
         case "expense-other", "expense-shared":
             if let wallet = store.ledger.activeWallets.first, let category = store.ledger.categories.first {
                 let example = Expense(title: "Compra de ejemplo", cents: 123450, firstMonth: Month(), walletID: wallet.id, categoryID: category.id, allocation: route == "expense-other" ? .mai : .shared)

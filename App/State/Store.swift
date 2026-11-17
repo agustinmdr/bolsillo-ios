@@ -10,6 +10,7 @@ import UniformTypeIdentifiers
     var month = Month()
     var currency = "ARS"
     var showAdd = false
+    private(set) var deletingExpenseID: UUID?
     var reviewUndo: BulkUndo?
     var reminderStatus: String?
     var backupNotice: String?
@@ -110,8 +111,22 @@ import UniformTypeIdentifiers
         var next = ledger; let count = next.undoBulk(undo)
         if persist(next) { reviewUndo = nil; return count }; return 0
     }
-    func deleteExpense(_ id: UUID) {
-        commit { data in data.expenses.removeAll { $0.id == id }; data.ops.adjustments.removeAll { $0.id == id } }
+    @discardableResult func deleteExpense(_ id: UUID) async -> Bool {
+        guard deletingExpenseID == nil else { return false }
+        guard !loadFailed else { error = "Restaurá un respaldo válido antes de modificar datos."; return false }
+        guard ledger.expenses.contains(where: { $0.id == id }) || ledger.ops.adjustments.contains(where: { $0.id == id }) else { return false }
+        deletingExpenseID = id
+        defer { deletingExpenseID = nil }
+        // Dejar que la interfaz dibuje el indicador antes del guardado síncrono.
+        do { try await Task.sleep(for: .milliseconds(80)) } catch { return false }
+        // Leer la versión actual después de la espera, para conservar cambios concurrentes.
+        var next = ledger
+        next.expenses.removeAll { $0.id == id }
+        next.ops.adjustments.removeAll { $0.id == id }
+        let saved = persist(next)
+        // Mantener el bloqueo un instante para absorber toques que quedaron en cola.
+        try? await Task.sleep(for: .milliseconds(200))
+        return saved
     }
     func refreshBackupList() { backupURLs = (try? LedgerStorage.snapshots(in: storage.backupsURL)) ?? [] }
     func createBackupNow() {

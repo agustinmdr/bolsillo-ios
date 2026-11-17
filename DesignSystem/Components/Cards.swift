@@ -20,3 +20,31 @@ struct ExpenseCard<Content: View>: View {
         .padding(20).bolsilloCard()
     }
 }
+
+private struct BlockingProgress: ViewModifier {
+    let active: Bool
+    let message: String
+    func body(content: Content) -> some View {
+        content
+            .disabled(active)
+            .interactiveDismissDisabled(active)
+            .overlay {
+                if active {
+                    ZStack {
+                        Palette.ink.opacity(0.16).ignoresSafeArea()
+                        ProgressView(message)
+                            .tint(Palette.accent).foregroundStyle(Palette.text)
+                            .font(.subheadline.weight(.medium))
+                            .padding(24).bolsilloCard(radius: 20)
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .contentShape(Rectangle())
+                        .accessibilityElement(children: .combine)
+                }
+            }
+    }
+}
+extension View {
+    func blockingProgress(_ active: Bool, message: String) -> some View {
+        modifier(BlockingProgress(active: active, message: message))
+    }
+}

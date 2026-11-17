@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 struct ChargeRow: View {
     @Environment(Store.self) private var store
     let charge: Charge
+    var amountsVisible = true
     var body: some View {
         let e = charge.expense
         let category = store.ledger.categories.first { $0.id == e.categoryID }
@@ -18,7 +19,7 @@ struct ChargeRow: View {
             }
             Spacer(minLength: 4)
             VStack(alignment: .trailing, spacing: 4) {
-                Text(money(charge.cents, currency: e.currency)).font(.subheadline.bold()).multilineTextAlignment(.trailing)
+                Text(amountsVisible ? money(charge.cents, currency: e.currency) : "••••").accessibilityLabel(amountsVisible ? money(charge.cents, currency: e.currency) : "Importe oculto").font(.subheadline.bold()).multilineTextAlignment(.trailing)
                 if charge.installmentProgress != nil { Text("este mes").font(.caption2).foregroundStyle(Palette.muted) }
             }
         }

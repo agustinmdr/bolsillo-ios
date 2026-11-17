@@ -20,6 +20,35 @@ func runPlanningChecks() throws {
     check(try LedgerStorage.data(captureLedger) == captureBefore, "Captura rechazada no modifica gastos ni referencias")
     captureLedger.wallets[0].archived = false
     check(try capture.apply(to: &captureLedger), "Restaurar permite volver a usar la misma tarjeta en Atajos")
+    var partial = native
+    partial.installments = 6; partial.firstInstallment = 3
+    let partialCharges = (0..<6).compactMap { partial.occurrence(in: jan.adding($0)) }
+    check(partialCharges.map(\.number) == [3, 4, 5, 6], "Plan iniciado en cuota 3 registra únicamente 3 a 6")
+    check(partial.occurrence(in: jan.adding(-1)) == nil && partial.occurrence(in: jan.adding(4)) == nil, "Cuotas anteriores no se reconstruyen y el plan termina a tiempo")
+    check(partialCharges.map(\.cents) == [1667, 1667, 1667, 1666], "Cuota inicial respeta los centavos del plan original")
+    check(partialCharges.first?.installmentProgress?.lastMonth == jan.adding(3) && partialCharges.first?.installmentProgress?.remaining == 3, "Avance y fin del plan consideran la cuota inicial")
+    var partialLedger = ledger; partialLedger.expenses = [partial]; partialLedger.incomes = []
+    try partialLedger.validate()
+    let partialForecast = partialLedger.forecast(startingAt: jan, count: 6, currency: "ARS", portion: .total)
+    check(partialForecast.months.reduce(Int64(0)) { $0+partialForecast.total(in: $1) } == 6667, "Proyección suma solo cuotas registradas y futuras")
+    check(partialForecast.releases.first?.freedFrom == jan.adding(4), "Liberación corresponde al mes después de la última cuota real")
+    var withHistory = partialLedger
+    withHistory.expenses.append(Expense(title: "Plan nativo 03/06", cents: 1667, firstMonth: jan, walletID: wallet, categoryID: category, sourceKey: "planilla-2026-partial-example"))
+    let historyForecast = withHistory.forecast(startingAt: feb, count: 3, currency: "ARS", portion: .total)
+    check(historyForecast.total(in: feb) == 1667 && historyForecast.amounts.filter { $0.kind == .estimated }.allSatisfy { $0.cents == 0 }, "Plan iniciado en cuota intermedia evita volver a estimar la misma compra histórica")
+    let partialRestored = try JSONDecoder().decode(Ledger.self, from: LedgerStorage.data(partialLedger))
+    check(partialRestored.expenses[0].firstInstallment == 3 && partialRestored.expenses[0].occurrence(in: jan)?.number == 3, "Cuota inicial persiste en respaldos")
+    let legacyData = try JSONEncoder().encode(native)
+    let legacyExpense = try JSONDecoder().decode(Expense.self, from: legacyData)
+    check(!String(decoding: legacyData, as: UTF8.self).contains("firstInstallment") && legacyExpense.firstInstallmentNumber == 1, "Planes anteriores conservan cuota inicial 1 sin cambiar su JSON")
+    partial.firstInstallment = 6
+    check(partial.occurrence(in: jan)?.number == 6 && partial.occurrence(in: jan.adding(1)) == nil, "Última cuota como primera carga crea un solo cargo")
+    partialLedger.expenses[0].firstInstallment = 7
+    do { try partialLedger.validate(); fatalError("Aceptó cuota inicial mayor al total") } catch { check(true, "Rechaza cuota inicial fuera de rango") }
+    partialLedger.expenses[0].firstInstallment = 0
+    do { try partialLedger.validate(); fatalError("Aceptó cuota inicial cero") } catch { check(true, "Rechaza cuota inicial cero") }
+    partialLedger.expenses[0].firstInstallment = 2; partialLedger.expenses[0].recurring = true
+    do { try partialLedger.validate(); fatalError("Aceptó cuota inicial en recurrente") } catch { check(true, "Recurrentes no usan cuota inicial") }
     let original = try LedgerStorage.data(ledger)
     let total = ledger.forecast(startingAt: jan, count: 6, currency: "ARS", portion: .total)
     check(total.total(in: jan) == 3334+9000+1234, "Proyección conserva cargos registrados del primer mes")
@@ -89,4 +118,30 @@ func runPlanningChecks() throws {
     check(ledger.cardReminderPlan(now: jan.date).isEmpty, "Tarjetas archivadas no avisan")
     check(ledger.cardReminderPlan(now: jan.date, daysBefore: -1).isEmpty, "Anticipación inválida no programa fechas incorrectas")
     check(try LedgerStorage.data(ledger).count > 0, "Planificación mantiene ledger válido y codificable")
+    var summaryLedger = Ledger()
+    let summaryWallet = summaryLedger.wallets[0].id, summaryCategory = summaryLedger.categories[0].id
+    summaryLedger.expenses = [
+        Expense(title: "Personal", cents: 10000, firstMonth: jan, walletID: summaryWallet, categoryID: summaryCategory),
+        Expense(title: "Compartido", cents: 10001, firstMonth: jan, walletID: summaryWallet, categoryID: summaryCategory, allocation: .shared),
+        Expense(title: "Ajeno", cents: 4000, firstMonth: jan, walletID: summaryWallet, categoryID: summaryCategory, allocation: .mai),
+        Expense(title: "Otro mes", cents: 99999, firstMonth: feb, walletID: summaryWallet, categoryID: summaryCategory),
+        Expense(title: "USD", cents: 900, currency: "USD", firstMonth: jan, walletID: summaryWallet, categoryID: summaryCategory)
+    ]
+    summaryLedger.incomes = [Income(month: jan, title: "Sueldo de ejemplo", cents: 50000), Income(month: jan, title: "Otro ingreso", cents: 2500), Income(month: feb, title: "Otro mes", cents: 99999), Income(month: jan, title: "USD", cents: 2000, currency: "USD")]
+    summaryLedger.ops.adjustments = [StatementAdjustment(walletID: summaryWallet, month: jan, currency: "ARS", title: "Reintegro", cents: 1001, kind: .refund, categoryID: summaryCategory)]
+    let summaryBefore = try LedgerStorage.data(summaryLedger)
+    let summary = summaryLedger.monthlyOverview(in: jan, currency: "ARS")
+    check(summary.totalExpenses == 23000 && summary.personalExpenses == 13999, "Resumen distingue total y parte personal, con centavos y reintegros")
+    check(summary.income == 52500 && summary.incomeCount == 2, "Resumen suma sueldo y otros ingresos del mes elegido")
+    check(summary.available == 38501 && summary.otherExpenses == 9001, "Saldo disponible resta solo la parte personal")
+    let dollars = summaryLedger.monthlyOverview(in: jan, currency: "USD")
+    check(dollars.income == 2000 && dollars.totalExpenses == 900 && dollars.available == 1100, "Saldo disponible no mezcla monedas")
+    check(try LedgerStorage.data(summaryLedger) == summaryBefore, "Consultar saldo no modifica los datos del usuario")
+    summaryLedger.incomes = []
+    check(summaryLedger.monthlyOverview(in: jan, currency: "ARS").incomeCount == 0, "Resumen identifica cuándo falta cargar ingresos")
+    summaryLedger.incomes = [Income(month: jan, title: "Ingreso", cents: 1)]
+    check(summaryLedger.monthlyOverview(in: jan, currency: "ARS").available == -13998, "Saldo insuficiente conserva signo negativo")
+    summaryLedger.expenses = []; summaryLedger.ops.adjustments = []
+    check(summaryLedger.monthlyOverview(in: jan, currency: "ARS").available == 1, "Mes con ingresos y sin gastos conserva todo el ingreso")
+
 }

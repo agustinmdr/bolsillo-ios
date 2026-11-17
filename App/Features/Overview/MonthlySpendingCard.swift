@@ -3,6 +3,7 @@ import Charts
 
 struct MonthlySpendingCard: View {
     @Environment(Store.self) private var store
+    var amountsVisible = true
     @State private var monthsCount = 6
     @State private var portion: SpendingPortion = .total
     @State private var selectedID: String?
@@ -30,7 +31,9 @@ struct MonthlySpendingCard: View {
                 Text(store.currency).font(.caption.weight(.semibold)).foregroundStyle(Palette.muted)
             }
             Text("\(months.first!.label) — \(store.month.label)").font(.caption2).foregroundStyle(Palette.muted)
-            if activeCategories.isEmpty {
+            if !amountsVisible {
+                Label("Gráfico e importes ocultos", systemImage: "eye.slash").font(.subheadline).foregroundStyle(Palette.muted).frame(maxWidth: .infinity, minHeight: 80)
+            } else if activeCategories.isEmpty {
                 ContentUnavailableView("Sin gastos registrados", systemImage: "chart.bar.xaxis", description: Text("Elegí otro período o registrá un gasto para ver la comparación."))
             } else {
                 spendingChart

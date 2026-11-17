@@ -65,6 +65,7 @@
 D9EBF5EB156D09A2C1E5FC08 = {isa = PBXBuildFile; fileRef = E73C646A9ABCD9CFC7355283; };
 42C1D0282D89AF2335081775 = {isa = PBXBuildFile; fileRef = E73C646A9ABCD9CFC7355283; };
 5356C8C420E030F536E30440 = {isa = PBXBuildFile; fileRef = 87145858FA62E3986566C109; };
+594FE76A36C728EA9F282E5B = {isa = PBXBuildFile; fileRef = 37DD74562E96A52904070E6D; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,7 @@ A84DED0CC00C2D2B9304B223 = {isa = PBXFileReference; lastKnownFileType = sourceco
 E73C646A9ABCD9CFC7355283 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReminderPreferences.swift"; sourceTree = "<group>"; };
 87145858FA62E3986566C109 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpendingForecastView.swift"; sourceTree = "<group>"; };
 086E99D3B40F55CE052129A5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlanningChecks.swift"; sourceTree = "<group>"; };
+37DD74562E96A52904070E6D = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardDismissal.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +225,7 @@ E73C646A9ABCD9CFC7355283 = {isa = PBXFileReference; lastKnownFileType = sourceco
 		FC6D6367ACD9A7FCBFBDD321 = {isa = PBXGroup; children = (B20000000000000000000003,); name = "Wallet"; path = "Wallet"; sourceTree = "<group>"; };
 		CB01740B3B3DF35F1195E987 = {isa = PBXGroup; children = (7B7C30CB56AA61767B6E35CA, 75C53E16D6D5EF485A13E77D, 1001213A369CB72BF983C6A4, FC6D6367ACD9A7FCBFBDD321,); name = "Services"; path = "Services"; sourceTree = "<group>"; };
 		410188F9DC6E499FEC68BCF6 = {isa = PBXGroup; children = (6356E6B58F54238E4DE98D9A, 26C036AA58166B49C6CC0C1C, F2FFE572F4B0FBA8C5C9E6A2, CB01740B3B3DF35F1195E987,); name = "Core"; path = "Core"; sourceTree = "<group>"; };
-		F3C2BED4BD0E21B6F90C5195 = {isa = PBXGroup; children = (ED9056625C8C0EA80665C584, EE6801FCC6C46EAE04E42E55, 95AF997F0BB7BB8EC8420734, 12CD39C48BAC9C6733EF9F14, 49DD7532A90060E8027CE7D2,); name = "Components"; path = "Components"; sourceTree = "<group>"; };
+		F3C2BED4BD0E21B6F90C5195 = {isa = PBXGroup; children = (37DD74562E96A52904070E6D, ED9056625C8C0EA80665C584, EE6801FCC6C46EAE04E42E55, 95AF997F0BB7BB8EC8420734, 12CD39C48BAC9C6733EF9F14, 49DD7532A90060E8027CE7D2,); name = "Components"; path = "Components"; sourceTree = "<group>"; };
 		490CD259D3EED38A828CDE6E = {isa = PBXGroup; children = (F3C2BED4BD0E21B6F90C5195, A10000000000000000000003,); name = "DesignSystem"; path = "DesignSystem"; sourceTree = "<group>"; };
 		B2AC4E3EF1A269E0129E087F = {isa = PBXGroup; children = (C2B1A9A45792ED336546099C, C30000000000000000000004, 000000000000000000000008,); name = "Importacion"; path = "Importacion"; sourceTree = "<group>"; };
 		DDF05173B376DE398B5EAD82 = {isa = PBXGroup; children = (000000000000000000000007, B861BC2F2696217D6987ED25, C81834B933CCD68171DA3297,); name = "Widget"; path = "Widget"; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@ A024F06580C79B7582C3806A = {isa = PBXGroup; children = (C5EFB5D354042DF8493EBE65
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+594FE76A36C728EA9F282E5B,
 5356C8C420E030F536E30440,
 D9EBF5EB156D09A2C1E5FC08,
 00B126E3990F486969E38DF9,

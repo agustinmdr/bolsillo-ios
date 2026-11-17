@@ -41,13 +41,13 @@ struct StatementEditorView: View {
                 Button("Agregar ajuste al resumen") { showingAdjustment = true }
                 ForEach(store.ledger.ops.adjustments.filter { $0.walletID == walletID && $0.month == store.month && $0.currency == store.currency }) { adjustment in
                     Button { editingAdjustment = adjustment } label: { HStack { VStack(alignment: .leading) { Text(adjustment.title); Text(adjustment.kind.rawValue).font(.caption).foregroundStyle(Palette.muted) }; Spacer(); Text(money(adjustment.signedCents, currency: adjustment.currency)) }.foregroundStyle(Palette.text) }
-                        .swipeActions { Button("Eliminar", role: .destructive) { store.deleteExpense(adjustment.id) } }
+                        .swipeActions { Button("Eliminar", role: .destructive) { Task { await store.deleteExpense(adjustment.id) } } }
                 }
             }
             Section("Cargos registrados") {
                 ForEach(store.charges.filter { $0.expense.walletID == walletID }) { ChargeRow(charge: $0) }
             }
-        }.navigationTitle("Conciliar resumen").navigationBarTitleDisplayMode(.inline)
+        }.blockingProgress(store.deletingExpenseID != nil, message: "Eliminando gasto…").navigationTitle("Conciliar resumen").navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 if let record = store.ledger.ops.statements.first(where: { $0.walletID == walletID && $0.month == store.month && $0.currency == store.currency }) { reported = record.reportedCents.map(editableAmount) ?? ""; paid = editableAmount(record.paidCents) }
             }

@@ -12,6 +12,7 @@ struct ExpenseForm: View {
     @State private var date = Date()
     @State private var firstDate = Date()
     @State private var installments = 1
+    @State private var currentInstallment = 1
     @State private var recurring = false
     @State private var hasEnd = false
     @State private var endDate = Date()
@@ -32,11 +33,12 @@ struct ExpenseForm: View {
     var installmentCharge: Charge? {
         guard let cents = parseCents(amount), let walletID, let categoryID else { return nil }
         var preview = Expense(title: title, cents: cents, currency: currency, firstMonth: Month(firstDate), installments: isHistorical || recurring ? 1 : installments, recurring: !isHistorical && recurring, walletID: walletID, categoryID: categoryID)
+        preview.firstInstallment = !isHistorical && !recurring && currentInstallment > 1 ? currentInstallment : nil
         if isHistorical { preview.sourceKey = existing?.sourceKey; preview.reportedInstallment = ReportedInstallment(number: reportedNumber, total: reportedTotal) }
         let target = preview.occurrence(in: store.month) == nil ? preview.firstMonth : store.month
         return preview.occurrence(in: target)
     }
-    var valid: Bool { !title.trimmingCharacters(in: .whitespaces).isEmpty && parseCents(amount) != nil && walletID != nil && categoryID != nil && (!hasEnd || Month(endDate) >= Month(firstDate)) }
+    var valid: Bool { !title.trimmingCharacters(in: .whitespaces).isEmpty && parseCents(amount) != nil && walletID != nil && categoryID != nil && (!recurring || !hasEnd || Month(endDate) >= Month(firstDate)) && (isHistorical || recurring || (1...installments).contains(currentInstallment)) }
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -55,6 +57,41 @@ struct ExpenseForm: View {
                         BolsilloDivider()
                         TextField("¿En qué gastaste?", text: $title).font(.title3.weight(.medium)).submitLabel(.done).padding(.vertical, 4)
                     }.padding(24).bolsilloCard(radius: 24)
+                ExpenseCard(title: "Pago y cuotas", symbol: "calendar") {
+                    if isAdjustment {
+                        DatePicker("Mes del ajuste", selection: $firstDate, displayedComponents: .date)
+                    } else if isHistorical {
+                        DatePicker("Mes del cargo", selection: $firstDate, displayedComponents: .date)
+                        Stepper("Total de cuotas: \(reportedTotal)", value: $reportedTotal, in: 2...120)
+                            .onChange(of: reportedTotal) { _, total in reportedNumber = min(reportedNumber, total) }
+                        Stepper("Cuota de este mes: \(reportedNumber) de \(reportedTotal)", value: $reportedNumber, in: 1...reportedTotal)
+                        Text("Este registro corresponde solo a ese mes. No vuelve a generar las cuotas del histórico.").font(.caption).foregroundStyle(Palette.muted)
+                    } else {
+                        Picker("Forma de pago", selection: paymentMode) {
+                            ForEach(PaymentMode.allCases, id: \.self) { Text($0.rawValue).tag($0) }
+                        }.pickerStyle(.segmented)
+                        if !recurring && installments > 1 {
+                            Stepper("Total de cuotas: \(installments)", value: $installments, in: 2...120)
+                                .onChange(of: installments) { _, count in currentInstallment = min(currentInstallment, count) }
+                            Stepper("\(existing == nil ? "Cuota actual" : "Cuota inicial"): \(currentInstallment) de \(installments)", value: $currentInstallment, in: 1...installments)
+                                .onChange(of: currentInstallment) { _, number in if number > 1 { autoMonth = false } }
+                            Text("Ingresá arriba el total de la compra. Se registra desde esta cuota en adelante; las anteriores no se vuelven a cargar.").font(.caption).foregroundStyle(Palette.muted)
+                            if let charge = installmentCharge?.expense.occurrence(in: Month(firstDate)) {
+                                LabeledContent("Importe de esta cuota", value: money(charge.cents, currency: currency))
+                                Text("Última cuota: \(Month(firstDate).adding(installments-currentInstallment).label).").font(.caption).foregroundStyle(Palette.muted)
+                            }
+                        }
+                        if existing == nil, currentInstallment == 1, store.ledger.wallets.first(where: { $0.id == walletID })?.closingDay != nil {
+                            Toggle("Usar el cierre de la tarjeta", isOn: $autoMonth).onChange(of: autoMonth) { _, _ in suggestMonth() }
+                        }
+                        DatePicker(!recurring && currentInstallment > 1 ? "Mes de esta cuota" : recurring ? "Primer mes" : "Primer mes de resumen", selection: $firstDate, displayedComponents: .date)
+                            .disabled(existing == nil && autoMonth && currentInstallment == 1 && store.ledger.wallets.first(where: { $0.id == walletID })?.closingDay != nil)
+                        if recurring {
+                            Toggle("Tiene mes de fin", isOn: $hasEnd)
+                            if hasEnd { DatePicker("Último mes", selection: $endDate, displayedComponents: .date) }
+                        }
+                    }
+                }
                 if let charge = installmentCharge { InstallmentDetail(charge: charge) }
                 ExpenseCard(title: "Dónde y cuándo", symbol: "bag") {
                     LabeledContent("Tarjeta o cuenta") {
@@ -100,34 +137,6 @@ struct ExpenseForm: View {
                     Label("Categoría", systemImage: "square.grid.2x2").font(.headline)
                     CategorySelectionGrid(categories: store.ledger.categories, selection: $categoryID)
                 }.padding(20).bolsilloCard(radius: 24)
-                ExpenseCard(title: "Cuotas y repetición", symbol: "calendar") {
-                    if isAdjustment {
-                        DatePicker("Mes del ajuste", selection: $firstDate, displayedComponents: .date)
-                        Text("\(existing?.tags ?? "Ajuste"). El importe se aplica con el signo correspondiente al tipo configurado en el resumen.").font(.caption).foregroundStyle(Palette.muted)
-                    } else if isHistorical {
-                        DatePicker("Mes del cargo", selection: $firstDate, displayedComponents: .date)
-                        Stepper("Cuota reportada: \(reportedNumber)", value: $reportedNumber, in: 1...reportedTotal)
-                        Stepper("Total de cuotas: \(reportedTotal)", value: $reportedTotal, in: 2...120)
-                            .onChange(of: reportedTotal) { _, total in reportedNumber = min(reportedNumber, total) }
-                        Text("Editar estos datos no reconstruye ni duplica el plan original.").font(.caption).foregroundStyle(Palette.muted)
-                    } else {
-                    if existing == nil, store.ledger.wallets.first(where: { $0.id == walletID })?.closingDay != nil {
-                        Toggle("Usar el cierre de la tarjeta", isOn: $autoMonth).onChange(of: autoMonth) { _, _ in suggestMonth() }
-                    }
-                    DatePicker("Primer mes de resumen", selection: $firstDate, displayedComponents: .date)
-                        .disabled(existing == nil && autoMonth && store.ledger.wallets.first(where: { $0.id == walletID })?.closingDay != nil)
-                    BolsilloDivider()
-                    Toggle("Se repite cada mes", isOn: $recurring)
-                    if recurring {
-                        Toggle("Tiene mes de fin", isOn: $hasEnd)
-                        if hasEnd { DatePicker("Último mes", selection: $endDate, displayedComponents: .date) }
-                    } else {
-                        Stepper("\(installments) \(installments == 1 ? "pago" : "cuotas")", value: $installments, in: 1...120)
-                        if let cents = parseCents(amount), installments > 1 { Text("Aproximadamente \(money(cents / Int64(installments), currency: currency)) por mes. Última cuota en \(Month(firstDate).adding(installments-1).label).").font(.caption).foregroundStyle(Palette.muted) }
-                    }
-                    Text("Elegí el mes del resumen de la primera cuota, según el cierre de tu tarjeta.").font(.caption).foregroundStyle(Palette.muted).fixedSize(horizontal: false, vertical: true)
-                    }
-                }
                 if !isAdjustment { ExpenseCard(title: "Un poco más de detalle", symbol: "text.alignleft") {
                     DisclosureGroup("Nota y etiquetas", isExpanded: $detailsExpanded) {
                         VStack(spacing: 16) {
@@ -160,17 +169,27 @@ struct ExpenseForm: View {
                     ToolbarItem(placement: .cancellationAction) { Button("Cancelar") { dismiss() } }
                     ToolbarItemGroup(placement: .keyboard) { Spacer(); Button("Listo") { UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) } }
                 }
-                .confirmationDialog(isAdjustment ? "¿Eliminar este ajuste?" : isHistorical ? "¿Eliminar este cargo histórico?" : "¿Eliminar la compra y todas sus cuotas?", isPresented: $deleting, titleVisibility: .visible) { Button("Eliminar", role: .destructive) { if let existing { store.deleteExpense(existing.id); if store.error == nil { dismiss() } } } }
+                .confirmationDialog(isAdjustment ? "¿Eliminar este ajuste?" : isHistorical ? "¿Eliminar este cargo histórico?" : "¿Eliminar la compra y todas sus cuotas?", isPresented: $deleting, titleVisibility: .visible) { Button("Eliminar", role: .destructive) { if let existing { Task { if await store.deleteExpense(existing.id) { dismiss() } } } } }
                 .onAppear(perform: populate)
                 .onChange(of: walletID) { _, id in if existing == nil, let w = store.ledger.wallets.first(where: { $0.id == id }) { payer = w.owner; suggestMonth() } }
                 .onChange(of: date) { _, _ in suggestMonth() }
                 .onChange(of: store.ledger.activeWallets.map(\.id)) { _, ids in
                     if existing == nil, walletID.map({ ids.contains($0) }) != true { walletID = ids.first }
                 }
-        }
+        }.blockingProgress(store.deletingExpenseID != nil, message: "Eliminando gasto…")
+    }
+    private enum PaymentMode: String, CaseIterable { case single = "Un pago", installments = "En cuotas", recurring = "Mensual" }
+    private var paymentMode: Binding<PaymentMode> {
+        Binding(get: { recurring ? .recurring : installments > 1 ? .installments : .single }, set: { mode in
+            switch mode {
+            case .single: recurring = false; installments = 1; currentInstallment = 1
+            case .installments: recurring = false; installments = max(installments, 2)
+            case .recurring: recurring = true; installments = 1; currentInstallment = 1
+            }
+        })
     }
     private func suggestMonth() {
-        guard existing == nil, autoMonth, let wallet = store.ledger.wallets.first(where: { $0.id == walletID }), wallet.closingDay != nil else { return }
+        guard existing == nil, autoMonth, currentInstallment == 1, let wallet = store.ledger.wallets.first(where: { $0.id == walletID }), wallet.closingDay != nil else { return }
         firstDate = wallet.suggestedStatementMonth(for: date).date
     }
     func populate() {
@@ -182,7 +201,7 @@ struct ExpenseForm: View {
         guard let e = existing else { return }
         title = e.displayTitle; amount = String(format: "%.2f", Double(e.cents)/100).replacingOccurrences(of: ".", with: ",")
         if let report = e.historicalInstallment { reportedNumber = report.number; reportedTotal = report.total }
-        currency = e.currency; date = e.date; firstDate = e.firstMonth.date; installments = e.installments; recurring = e.recurring
+        currency = e.currency; date = e.date; firstDate = e.firstMonth.date; installments = e.installments; currentInstallment = e.firstInstallmentNumber; recurring = e.recurring
         hasEnd = e.endMonth != nil; endDate = e.endMonth?.date ?? e.firstMonth.date
         allocation = e.allocation; payer = e.paidBy; percent = Double(e.maiPercent); notes = e.notes; tags = e.tags
     }
@@ -195,6 +214,7 @@ struct ExpenseForm: View {
             if store.error == nil { dismiss() }; return
         }
         var e = Expense(title: title.trimmingCharacters(in: .whitespaces), cents: cents, currency: currency, date: date, firstMonth: Month(firstDate), installments: recurring ? 1 : installments, recurring: recurring, endMonth: recurring && hasEnd ? Month(endDate) : nil, walletID: walletID, categoryID: categoryID, allocation: allocation, maiPercent: Int(percent), paidBy: payer, notes: notes, tags: tags)
+        e.firstInstallment = !isHistorical && !recurring && currentInstallment > 1 ? currentInstallment : nil
         if let existing {
             e.id = existing.id; e.sourceKey = existing.sourceKey; e.originalTitle = existing.originalTitle; e.purchaseMonth = existing.purchaseMonth
             if isHistorical {

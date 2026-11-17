@@ -48,3 +48,7 @@ Se separaron los archivos de pantallas, se movieron modelos/servicios/componente
 ## Planificación y avisos
 
 `Core/Planning` contiene la proyección financiera y el planificador de avisos como cálculos Foundation, sin escribir movimientos ni solicitar permisos. `SpendingForecastView` presenta resultados; `ReminderSettingsView` edita preferencias locales. `CardReminders` adapta los planes a UserNotifications con un cupo compartido, y Store serializa su actualización para evitar que una tarea antigua reponga avisos obsoletos. Las preferencias se guardan en UserDefaults y los permisos pertenecen a iOS.
+
+## Cuotas comenzadas
+
+Expense agrega firstInstallment opcional. Su ausencia conserva la semántica anterior (primera cuota 1), sin migración masiva. firstMonth es el primer mes registrado, no un comienzo inferido anterior. occurrence entrega el número real de cuota y distribuye el resto según su índice original; la proyección y fecha final usan el número inicial para no reconstruir meses anteriores. El recurso del teclado usa un observador de toques que no cancela los eventos de los controles y excluye UITextField/UITextView.

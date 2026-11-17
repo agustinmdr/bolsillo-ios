@@ -76,6 +76,30 @@ Los medios quitados no se ofrecen en cargas nuevas ni en las sugerencias de Ataj
 
 La responsabilidad en el formulario se muestra en una sola línea; se trunca con puntos suspensivos cuando no entra. El menú conserva las tres opciones y VoiceOver lee su nombre completo. Las etiquetas de responsabilidad de los listados usan el mismo límite de una línea.
 
+## Eliminar desde la lista de gastos
+
+En Gastos, deslizá una fila hacia la izquierda y tocá Eliminar. Mientras se guarda, se muestra «Eliminando gasto…» y se bloquean los controles. El borrado acepta una sola operación a la vez, también desde el detalle y al eliminar ajustes; un doble toque no vuelve a guardar. Un gasto puntual, un cargo histórico importado o un ajuste se elimina directamente, sin abrir el detalle. El deslizamiento completo no elimina por sí solo: hay que tocar el botón.
+
+Si es una compra nativa en cuotas o un recurrente, aparece una confirmación que explica que se eliminará la compra completa, con sus cargos de otros meses. Cancelar conserva todo. Se utiliza el mismo guardado local, respaldos y sincronización que al eliminar desde el detalle.
+
+## Cargar una compra en cuotas ya comenzada
+
+El bloque Pago y cuotas está inmediatamente debajo del importe, antes de las categorías. Elegí En cuotas, indicá el total de cuotas, la cuota actual y el mes de ese resumen. El importe de arriba sigue siendo el total de la compra; la app calcula el cargo mensual y muestra cuándo termina.
+
+Si empezás por la cuota 3 de 6, se crean cargos 3, 4, 5 y 6 desde el mes elegido. Las cuotas 1 y 2 no se generan ni se agregan a meses anteriores. El cálculo conserva los centavos del plan original. Al editar, Cuota inicial corresponde al primer cargo registrado; los históricos importados siguen siendo cargos de un solo mes y conservan su edición independiente.
+
+Tocar fuera de un campo de texto cierra el teclado, sin impedir tocar botones, menús, categorías u otros campos. También se mantiene el botón Listo de la barra del teclado.
+
+## Ocultar importes en Resumen
+
+El ojo junto a Saldo disponible alterna entre mostrar y ocultar los importes del Resumen. Inicialmente están visibles y la elección queda guardada en este dispositivo. Al ocultar, saldo, sueldo, total, reparto, últimos gastos y cuentas se reemplazan por puntos; los gráficos y sus valores se ocultan también. Los valores ocultos no se leen mediante VoiceOver. No modifica gastos, ingresos, reportes ni sincronización.
+
+## Saldo disponible del mes
+
+Resumen muestra una tarjeta con Saldo disponible, Total de gastos y Sueldo e ingresos. El saldo es una estimación de los ingresos registrados menos la parte personal de los gastos del mes y moneda seleccionados; los gastos de otra persona no se restan de ese saldo. Si hay gastos ajenos o compartidos, se muestra el reparto de responsabilidades. Los reintegros reducen el gasto neto.
+
+Si todavía no hay ingresos cargados, el saldo muestra un guion y un mensaje para agregarlos. Tocá el + junto a Sueldo e ingresos para registrar un ingreso directamente desde Resumen. La entrada conserva el mes y moneda elegidos al abrir y no se repite automáticamente. Los saldos negativos se muestran en rojo. No modifica ni mueve gastos existentes.
+
 ## Funcionalidades
 
 - Gastos propios, compartidos o de otra persona; pagador y porcentajes independientes.

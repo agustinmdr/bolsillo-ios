@@ -148,6 +148,9 @@ struct Expense: Codable, Identifiable, Equatable {
     var reviewed: Bool? = nil
     /// Mes de consumo confirmado cuando no se conoce el día exacto.
     var purchaseMonth: Month? = nil
+    /// Número de la primera cuota registrada; nil conserva los planes anteriores desde 1.
+    var firstInstallment: Int? = nil
+    var firstInstallmentNumber: Int { firstInstallment ?? 1 }
     var historicalInstallment: ReportedInstallment? {
         guard installments == 1, !recurring, sourceKey?.hasPrefix("planilla-2026-") == true else { return nil }
         return reportedInstallment ?? ReportedInstallment.parse(title)?.info
@@ -163,9 +166,11 @@ struct Expense: Codable, Identifiable, Equatable {
             guard endMonth == nil || month <= endMonth! else { return nil }
             return Charge(expense: self, month: month, cents: cents, number: index+1)
         }
-        guard index < installments, installments > 0 else { return nil }
+        let first = firstInstallmentNumber
+        guard installments > 0, first >= 1, first <= installments, index < installments-first+1 else { return nil }
         let count = Int64(installments)
-        return Charge(expense: self, month: month, cents: cents/count + (Int64(index) < cents%count ? 1 : 0), number: index+1)
+        let number = first+index
+        return Charge(expense: self, month: month, cents: cents/count + (Int64(number-1) < cents%count ? 1 : 0), number: number)
     }
 }
 struct Charge: Identifiable {
@@ -176,7 +181,7 @@ struct Charge: Identifiable {
     var id: String { expense.id.uuidString + month.id }
     var installmentProgress: InstallmentProgress? {
         if !expense.recurring && expense.installments > 1 {
-            return InstallmentProgress(number: number, total: expense.installments, lastMonth: expense.firstMonth.adding(expense.installments-1), historical: false)
+            return InstallmentProgress(number: number, total: expense.installments, lastMonth: expense.firstMonth.adding(expense.installments-expense.firstInstallmentNumber), historical: false)
         }
         if let report = expense.historicalInstallment, report.isValid {
             return InstallmentProgress(number: report.number, total: report.total, lastMonth: month.adding(report.total-report.number), historical: true)
@@ -291,6 +296,7 @@ struct Ledger: Codable {
               wallets.allSatisfy({ !$0.name.trimmingCharacters(in: .whitespaces).isEmpty }),
               categories.allSatisfy({ !$0.name.trimmingCharacters(in: .whitespaces).isEmpty && !$0.section.isEmpty && ($0.colorIndex.map { (0...10000).contains($0) } ?? true) }) else { throw FinanceError.invalid }
         guard expenses.allSatisfy({ $0.purchaseMonth.map(validMonth) ?? true }) else { throw FinanceError.invalid }
+        guard expenses.allSatisfy({ e in e.firstInstallment.map { (1...e.installments).contains($0) && !e.recurring } ?? true }) else { throw FinanceError.invalid }
     }
 }
 enum SpendingPortion: String, CaseIterable, Identifiable {
@@ -393,5 +399,22 @@ extension Category {
         let rgb: (Double, Double, Double)
         switch sector % 6 { case 0: rgb = (v,t,p); case 1: rgb = (q,v,p); case 2: rgb = (p,v,t); case 3: rgb = (p,q,v); case 4: rgb = (t,p,v); default: rgb = (v,p,q) }
         return String(format: "%02X%02X%02X", Int((rgb.0*255).rounded()), Int((rgb.1*255).rounded()), Int((rgb.2*255).rounded()))
+    }
+}
+
+/// Balance personal del mes, calculado sin modificar movimientos ni mezclar monedas.
+struct MonthlyOverview {
+    let totalExpenses: Int64
+    let personalExpenses: Int64
+    let income: Int64
+    let incomeCount: Int
+    var otherExpenses: Int64 { totalExpenses-personalExpenses }
+    var available: Int64 { income-personalExpenses }
+}
+extension Ledger {
+    func monthlyOverview(in month: Month, currency: String) -> MonthlyOverview {
+        let monthlyCharges = charges(in: month, currency: currency)
+        let monthlyIncome = incomes.filter { $0.month == month && $0.currency == currency }
+        return MonthlyOverview(totalExpenses: monthlyCharges.reduce(0) { $0+$1.cents }, personalExpenses: monthlyCharges.reduce(0) { $0+$1.agusShare }, income: monthlyIncome.reduce(0) { $0+$1.cents }, incomeCount: monthlyIncome.count)
     }
 }
